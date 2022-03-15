@@ -1,0 +1,25 @@
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\bin\Debug\SeaBattle.exe.config
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\bin\Debug\SeaBattle.exe
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\bin\Debug\SeaBattle.pdb
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\obj\Debug\SeaBattle.csprojAssemblyReference.cache
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\obj\Debug\SeaBattle.Form1.resources
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\obj\Debug\SeaBattle.Properties.Resources.resources
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\obj\Debug\SeaBattle.csproj.GenerateResource.cache
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\obj\Debug\SeaBattle.csproj.CoreCompileInputs.cache
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\obj\Debug\SeaBattle.exe
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\obj\Debug\SeaBattle.pdb
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\obj\Debug\SeaBattle.Main.resources
+D:\work\!!!!!!!!!!!!!!____Андрей ЛИТ\Костик\SeaBattle\SeaBattle\obj\Debug\SeaBattle.Frm_start.resources
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\bin\Debug\SeaBattle.exe.config
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\bin\Debug\SeaBattle.exe
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\bin\Debug\SeaBattle.pdb
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\obj\Debug\SeaBattle.csproj.AssemblyReference.cache
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\obj\Debug\SeaBattle.csproj.SuggestedBindingRedirects.cache
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\obj\Debug\SeaBattle.Form1.resources
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\obj\Debug\SeaBattle.Frm_start.resources
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\obj\Debug\SeaBattle.Main.resources
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\obj\Debug\SeaBattle.Properties.Resources.resources
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\obj\Debug\SeaBattle.csproj.GenerateResource.cache
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\obj\Debug\SeaBattle.csproj.CoreCompileInputs.cache
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\obj\Debug\SeaBattle.exe
+C:\work\programing\projects\sb\Sea-Battle-main\SeaBattle\obj\Debug\SeaBattle.pdb
