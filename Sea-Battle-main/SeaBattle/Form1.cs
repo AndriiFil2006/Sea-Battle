@@ -463,6 +463,17 @@ namespace SeaBattle
                 }
                 if (cont == false)
                 {
+                    listBox1.Items.Clear();
+                    for(int i = 0; i < 10; i++)
+                    {
+                        for(int j = 0; j < 10; j++)
+                        {
+                            if (cells[i, j] != 0)
+                            {
+                                listBox1.Items.Add("Rows " + i + " Columns " + j + " Value " + cells[i, j]);
+                            }
+                        }
+                    }
                     label1.Text = "";
                     sel_row = -1;
                     sel_column = -1;
@@ -628,7 +639,7 @@ namespace SeaBattle
                                     {
                                         if (cells[sel_row, i + sel_column] == 0)
                                         {
-                                            cells[sel_row, i + sel_column] = 1;
+                                            //cells[sel_row, i + sel_column] = 1;
                                         }
                                         else
                                         {
@@ -640,6 +651,7 @@ namespace SeaBattle
                                             }
                                             else
                                             {
+                                                isBreak = true;
                                                 label1.Text = "Error has been occured! You can't put one ship on another one!";
                                             }
                                             break;
@@ -659,18 +671,18 @@ namespace SeaBattle
                                     {
                                         if (cells[sel_row + i, sel_column] == 0)
                                         {
-                                            cells[sel_row + i, sel_column] = 1;
+                                            //cells[sel_row + i, sel_column] = 1;
                                         }
                                         else
                                         {
                                             label1.ForeColor = Color.Red;
-                                        isBreak = true;
                                             if (i == 0)
                                             {
                                                 sel_cell_with_ship++;
                                             }
                                             else
                                             {
+                                                isBreak = true;
                                                 label1.Text = "Error has been occured! You can't put one ship on another one!";
                                             }
                                         break; 
@@ -688,6 +700,17 @@ namespace SeaBattle
                             //add_ship(Convert.ToInt16(rows[sel_row]), Convert.ToInt16(columns[sel_column]), sel_ship + 2, Color.Blue, is_horisontal, "");
                             if (isBreak == false)
                             {
+                            for(int i = 0; i < sel_ship + 2; i++)
+                            {
+                                if(is_horisontal == false)
+                                {
+                                    cells[sel_row, sel_column + i] = 1;
+                                }
+                                else
+                                {
+                                    cells[sel_row + i, sel_column] = 1;
+                                }
+                            }
                                 if (sel_ship == 0)
                                 {
                                     if (ships[0] == 1)
@@ -984,19 +1007,28 @@ namespace SeaBattle
                         label1.Location = new Point(pctrBxOut.Width / 2 - 14 * 6, 9);
                         int sel_hit_row = -1;
                         int sel_hit_column = -1;
+                        /*
                         listBox1.Items.Clear();
                         listBox1.Items.Add("Enemy_rows[1]" + enemy_rows[1]);
                         listBox1.Items.Add("Enemy_columns[1]" + enemy_columns[1]);
                         listBox1.Items.Add("X of click: " + e.X);
                         listBox1.Items.Add("Y of click: " + e.Y);
+                        */
                         for (int i = 0; i < 10; i++)
                         {
                             for(int j = 0; j < 10; j++)
                             {
-                                if(enemy_rows[i] + row_len > e.X && enemy_rows[i] < e.X && enemy_columns[j] > e.Y && enemy_columns[j] - column_len < e.Y)
+                                if (shots[i, j] == 0)
                                 {
-                                    sel_hit_row = i;
-                                    sel_hit_column = j;
+                                    if (enemy_rows[i] + row_len > e.X && enemy_rows[i] < e.X && enemy_columns[j] > e.Y && enemy_columns[j] - column_len < e.Y)
+                                    {
+                                        sel_hit_row = i;
+                                        sel_hit_column = j;
+                                    }
+                                }
+                                else
+                                {
+                                    label1.Text = "You've already shoted this cell!";
                                 }
                             }
                         }
@@ -1004,7 +1036,18 @@ namespace SeaBattle
                         {
                             draw_cross(Convert.ToInt16(enemy_rows[sel_hit_row]), Convert.ToInt16(enemy_columns[sel_hit_column]));
                             //listBox1.Items.Clear();
-                            listBox1.Items.Add("Hitted");
+                            //listBox1.Items.Add("Hitted");
+                            if (enemy_cells[sel_hit_row, sel_hit_column] == 0)
+                            {
+                                shots[sel_hit_row, sel_hit_column] = 1;
+                                listBox1.Items.Add("Missed");
+                            }
+                            else if(enemy_cells[sel_hit_row, sel_hit_column] == 1)
+                            {
+                                shots[sel_hit_row, sel_hit_column] = 2;
+                                listBox1.Items.Add("Hitted");
+                            }
+
                         }
                     }
                 }
