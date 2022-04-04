@@ -467,9 +467,10 @@ namespace SeaBattle
         {
             y = y + y / column_len;
             Graphics gr = pctrBxOut.CreateGraphics();
-            Pen tablePen = new Pen(Color.Red, 3);
-            gr.DrawLine(tablePen, x, y, x + row_len, y - column_len);
-            gr.DrawLine(tablePen, x + row_len, y, x, y - column_len);
+            Pen tablePen = new Pen(Color.Gray, 3);
+            //Pen tablePen = new Pen(Color.Red, 3);
+            gr.DrawLine(tablePen, x + 5, y - 5, x + row_len - 5, y - column_len + 5);
+            gr.DrawLine(tablePen, x - 5 + row_len, y - 5, x + 5, y + 5 - column_len);
         }
 
         public void draw_small_cross(int x, int y)
