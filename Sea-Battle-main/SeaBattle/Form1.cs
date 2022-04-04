@@ -358,6 +358,7 @@ namespace SeaBattle
                 }
                 else
                 {
+                    y = y + y / column_len;
                     int rad;
                     if (column_len > row_len)
                     {
@@ -1031,15 +1032,12 @@ namespace SeaBattle
                     deck_ship[3] = 3;
                     deck_ship[4] = 4;
                     deck_ship[5] = 5;*/
-                    for(int i = 0; i < 6; i++)
-                    {
-                        listBox1.Items.Add("deck_ship[" + i + "] = " + deck_ship[i]);
-                    }
 
                     btnStart.Hide();
                     pctrBxOut.Refresh();
                     draw_table(true);
                     draw_table(false);
+                    
                     for (int i = 0; i < 6; i++)
                     {
                         if (ships[i] == 1)
@@ -1109,7 +1107,7 @@ namespace SeaBattle
                                     bool matched = true;
                                     for(int j = 0; j < deck_ship[i]; j++)
                                     {
-                                        listBox1.Items.Add("deck_ship[" + i + "] = " + deck_ship[i]);
+                                       // listBox1.Items.Add("deck_ship[" + i + "] = " + deck_ship[i]);
 
                                         if (enemy_hor_ship[i] == false)
                                         {
@@ -1140,7 +1138,7 @@ namespace SeaBattle
                                                 enemy_ships_left[0] = 0;
                                             }
                                         }
-                                        else if (i == 2 || i == 3)
+                                        if (i == 2 || i == 3)
                                         {
                                             if (enemy_ships_left[1] != 0)
                                             {
@@ -1151,19 +1149,14 @@ namespace SeaBattle
                                                 enemy_ships_left[1] = 0;
                                             }
                                         }
-                                        else if (enemy_ships[4] == 3)
+                                        if (enemy_ships[4] == 3)
                                         {
-                                            if (enemy_ships_left[2] != 0)
-                                            {
-                                                enemy_ships_left[2] = 0;
-                                            }
+                                           enemy_ships_left[2] = 0;
                                         }
-                                        else if (enemy_ships[5] == 3)
+                                        if (enemy_ships[5] == 3)
                                         {
-                                            if (enemy_ships_left[3] != 0)
-                                            {
-                                                enemy_ships_left[3] = 0;
-                                            }
+                                            enemy_ships_left[3] = 0;
+                                            listBox1.Items.Add("LOLOLOSHKA");
                                         }
                                     }
                                 }
@@ -1173,6 +1166,17 @@ namespace SeaBattle
                             for (int i = 0; i < enemy_ships_left.Length; i++)
                             {
                                 enemy_left_ships += enemy_ships_left[i];
+                            }
+
+                            for(int i = 0; i < 10; i++)
+                            {
+                                for(int j = 0; j < 10; j++)
+                                {
+                                    if(shots[i,j] == 2)
+                                    {
+                                        listBox1.Items.Add("Row " + i + " Column " + j + " Value " + shots[i, j]);
+                                    }
+                                }
                             }
                             /*
                             for (int j = 0; j < enemy_ships.Length; j++)
@@ -1186,6 +1190,11 @@ namespace SeaBattle
                                     is_all_ships_dead = false;
                                 }
                             }*/
+
+                            for (int i = 0; i < enemy_ships_left.Length; i++)
+                            {
+                                listBox1.Items.Add("enemy_ships_left[" + i + "] = " + enemy_ships_left[i]);
+                            }
 
                             if (enemy_left_ships == 0)
                             {
