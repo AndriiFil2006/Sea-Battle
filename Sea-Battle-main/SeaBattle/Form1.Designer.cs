@@ -33,6 +33,8 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbl_diff = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pctrBxOut)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,12 +91,34 @@
             this.listBox1.Size = new System.Drawing.Size(374, 679);
             this.listBox1.TabIndex = 6;
             // 
+            // lbl_diff
+            // 
+            this.lbl_diff.AutoSize = true;
+            this.lbl_diff.ForeColor = System.Drawing.Color.White;
+            this.lbl_diff.Location = new System.Drawing.Point(545, 237);
+            this.lbl_diff.Name = "lbl_diff";
+            this.lbl_diff.Size = new System.Drawing.Size(155, 25);
+            this.lbl_diff.TabIndex = 7;
+            this.lbl_diff.Text = "Pick the difficulty";
+            this.lbl_diff.Click += new System.EventHandler(this.label2_Click_1);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(550, 276);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(150, 33);
+            this.comboBox1.TabIndex = 8;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1554, 688);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.lbl_diff);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnStart);
@@ -120,6 +144,8 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label lbl_diff;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
