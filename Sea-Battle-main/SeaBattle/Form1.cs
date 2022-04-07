@@ -1242,6 +1242,12 @@ namespace SeaBattle
                                         add_ship(Convert.ToInt16(rows[row_ship[i]]), Convert.ToInt16(columns[column_ship[i]]), deck_ship[i], Color.Blue, hor_ship[i], "");
                                     }
                                 }
+                                for (int i = 0; i < ships_left.Length; i++)
+                                {
+                                    left_ships += ships_left[i];
+                                    listBox1.Items.Add("ships_left[" + i + "] = " + ships_left[i]);
+                                }
+
 
                                 if (cells[shooted_row, shooted_col] == 0)
                                 {
@@ -1250,6 +1256,31 @@ namespace SeaBattle
                                     enemy_shots[shooted_row, shooted_col] = 1;
                                     //exit_loop = true;
                                     players_turn = true;
+                                    
+                                    listBox1.Items.Add("left_ships = " + left_ships);
+
+                                    for (int i = 0; i < 10; i++)
+                                    {
+                                        for (int j = 0; j < 10; j++)
+                                        {
+                                            if (enemy_shots[i, j] == 1)
+                                            {
+                                                draw_cross(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
+                                            }
+                                            if (enemy_shots[i, j] == 2)
+                                            {
+                                                draw_hit(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
+                                            }
+                                            if (shots[i, j] == 1)
+                                            {
+                                                draw_cross(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
+                                            }
+                                            if (shots[i, j] == 2)
+                                            {
+                                                draw_hit(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
+                                            }
+                                        }
+                                    }
                                     break;
                                 }
                                 else if (cells[shooted_row, shooted_col] == 1)
@@ -1313,41 +1344,39 @@ namespace SeaBattle
                                                 ships_left[3] = 0;
                                             }
                                         }
-                                    }                                  
-                                }
-
-                                for (int i = 0; i < ships_left.Length; i++)
-                                {
-                                    left_ships += ships_left[i];
-                                    listBox1.Items.Add("ships_left[" + i + "] = " + ships_left[i]);
-                                }
-                                listBox1.Items.Add("left_ships = " + left_ships);
-
-                                for (int i = 0; i < 10; i++)
-                                {
-                                    for (int j = 0; j < 10; j++)
+                                    }
+                                    for (int i = 0; i < ships_left.Length; i++)
                                     {
-                                        if (enemy_shots[i, j] == 1)
+                                        left_ships += ships_left[i];
+                                        listBox1.Items.Add("ships_left[" + i + "] = " + ships_left[i]);
+                                    }
+                                    listBox1.Items.Add("left_ships = " + left_ships);                                
+
+                                }
+                                if (left_ships == 0)
+                                {
+                                    for (int i = 0; i < 10; i++)
+                                    {
+                                        for (int j = 0; j < 10; j++)
                                         {
-                                            draw_cross(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
-                                        }
-                                        if (enemy_shots[i, j] == 2)
-                                        {
-                                            draw_hit(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
-                                        }
-                                        if (shots[i, j] == 1)
-                                        {
-                                            draw_cross(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
-                                        }
-                                        if (shots[i, j] == 2)
-                                        {
-                                            draw_hit(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
+                                            if (enemy_shots[i, j] == 1)
+                                            {
+                                                draw_cross(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
+                                            }
+                                            if (enemy_shots[i, j] == 2)
+                                            {
+                                                draw_hit(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
+                                            }
+                                            if (shots[i, j] == 1)
+                                            {
+                                                draw_cross(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
+                                            }
+                                            if (shots[i, j] == 2)
+                                            {
+                                                draw_hit(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
+                                            }
                                         }
                                     }
-                                }
-
-                                if(left_ships == 0)
-                                {
                                     is_all_ships_dead = true;
                                     MessageBox.Show("Enemy won! How could you lose to easy bot?");
                                 }
@@ -1359,6 +1388,10 @@ namespace SeaBattle
                                     break;
                                 }*/
                             }
+                        }
+                        else if(difficulty == "Normal")
+                        {
+
                         }
                     }
                 }
