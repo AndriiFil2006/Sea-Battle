@@ -23,6 +23,7 @@ namespace SeaBattle
         int column_len = 5;
         int ship_cross = -1;
         int cross_on_ship = -1;
+        int order_of_check = 0;
         string difficulty = "Normal";
 
         //array ships will have 4 values: 0 - not in the table, 1 - on the table and haven't hited, 2 - on the table, hitted, 3 - dead
@@ -31,13 +32,13 @@ namespace SeaBattle
         int[] column_ship = new int[8];
         bool[] hor_ship = new bool[8];
         int[] deck_ship = new int[8];
-        
+
 
         int[] enemy_ships = new int[8];
         int[] enemy_row_ship = new int[8];
         int[] enemy_column_ship = new int[8];
         bool[] enemy_hor_ship = new bool[8];
-      //  int[] enemy_deck_ship = new int[8];
+        //  int[] enemy_deck_ship = new int[8];
         //int[] ships_left = new int[8];
         //int[] enemy_ships_left = new int[8];
         int sel_ship = -1;
@@ -74,7 +75,7 @@ namespace SeaBattle
         public void draw_table(bool isEnemy)
         {
 
-            int x_indent = 30; 
+            int x_indent = 30;
             Color table_col;
             Graphics gr = pctrBxOut.CreateGraphics();
             if (isEnemy == false)
@@ -120,10 +121,10 @@ namespace SeaBattle
                     //enemy_columns[i] = pctrBxOut.Width / 2 + 30 + (pctrBxOut.Width - 60) / (2 * 11) * i;
                     enemy_columns[i] = y_indent + (pctrBxOut.Height - 60) / 10 * (i + 1);
                     enemy_rows[i] = 30 + (pctrBxOut.Width - 60) / (2 * 11) * i + pctrBxOut.Width / 2;
-                   //listBox1.Items.Add("I: " + i + " enemy_row " + enemy_rows[i] + " enemy_columns " + enemy_columns[i]);
-                   // listBox1.Items.Add("I: " + i + " row " + rows[i] + " columns " + columns[i]);
+                    //listBox1.Items.Add("I: " + i + " enemy_row " + enemy_rows[i] + " enemy_columns " + enemy_columns[i]);
+                    // listBox1.Items.Add("I: " + i + " row " + rows[i] + " columns " + columns[i]);
                 }
-                gr.DrawLine(tablePen, x_indent , y_indent + (pctrBxOut.Height - 50) / (10) * i, x_indent + pctrBxOut.Width / 2 - 60 - 15 - 4, y_indent + (pctrBxOut.Height - 50) / (10) * i);
+                gr.DrawLine(tablePen, x_indent, y_indent + (pctrBxOut.Height - 50) / (10) * i, x_indent + pctrBxOut.Width / 2 - 60 - 15 - 4, y_indent + (pctrBxOut.Height - 50) / (10) * i);
             }
             row_len = Convert.ToInt16(rows[2] - rows[1]);
             column_len = Convert.ToInt16(columns[2] - columns[1]);
@@ -173,14 +174,14 @@ namespace SeaBattle
                     {
                         is_hor = false;
                     }
-                    else if(rand.Next(0, 2) == 1)
+                    else if (rand.Next(0, 2) == 1)
                     {
                         is_hor = true;
                     }
-                    bool is_break = false;                    
-                    for(int j = 0; j < num_deck; j++)
+                    bool is_break = false;
+                    for (int j = 0; j < num_deck; j++)
                     {
-                        if(is_hor == false)
+                        if (is_hor == false)
                         {
                             if (column + num_deck < 10)
                             {
@@ -211,7 +212,7 @@ namespace SeaBattle
                             }
                         }
                     }
-                    if(is_break == true)
+                    if (is_break == true)
                     {
                         if (is_hor == false)
                         {
@@ -315,7 +316,7 @@ namespace SeaBattle
                         rad = column_len;
                     }
 
-                    gr.FillRectangle(ship_brush, x + row_len - rad / 4, y - column_len / 2 - rad / 4, rad / 2,rad / 2);
+                    gr.FillRectangle(ship_brush, x + row_len - rad / 4, y - column_len / 2 - rad / 4, rad / 2, rad / 2);
 
                     gr.FillEllipse(gun_brush, x + row_len - rad / 4, y - column_len / 2 - rad / 4, rad / 5, rad / 5);
                     gr.FillEllipse(fire_brush, x + row_len - rad / 4 + rad / 32, y - column_len / 2 - rad / 4 + rad / 32, rad / 8, rad / 8);
@@ -332,11 +333,11 @@ namespace SeaBattle
             }
             else
             {
-                if(num_ship != 2)
+                if (num_ship != 2)
                 {
                     gr.DrawLine(shipPen, x + row_len, y + column_len - column_len + 8, x + row_len / 2, y - column_len);
                     gr.DrawLine(shipPen, x, y + column_len - column_len + 8, x + row_len / 2, y - column_len);
-                    for(int i = 0; i < num_ship - 2; i++)
+                    for (int i = 0; i < num_ship - 2; i++)
                     {
                         gr.DrawLine(shipPen, x + row_len, y + column_len * (i + 1) + 8 - column_len, x + row_len, y + column_len * (i + 2) + 8 - column_len);
                         gr.DrawLine(shipPen, x, y + column_len * (i + 1) - column_len + 8, x, y + column_len * (i + 2) + 8 - column_len);
@@ -394,7 +395,7 @@ namespace SeaBattle
                     gr.FillEllipse(gun_brush, x + rad / 4, y + column_len + rad / 4 - rad / 5 + 8 - column_len, rad / 5, rad / 5);
                     gr.FillEllipse(fire_brush, Convert.ToInt32(x + rad / 4 + 1.5 * rad / 32), y + column_len + rad / 4 - rad / 5 + 8 + rad / 32 - column_len, rad / 8, rad / 8);
 
-                    gr.FillEllipse(gun_brush,Convert.ToInt32(x + rad / 4 + 1.5 * rad / 5), y + column_len + rad / 4 - rad / 5 + 8 - column_len, rad / 5, rad / 5);
+                    gr.FillEllipse(gun_brush, Convert.ToInt32(x + rad / 4 + 1.5 * rad / 5), y + column_len + rad / 4 - rad / 5 + 8 - column_len, rad / 5, rad / 5);
                     gr.FillEllipse(fire_brush, Convert.ToInt32(x + rad / 4 + 1.5 * rad / 5 + rad / 32), y + column_len + rad / 4 - rad / 5 + 8 + rad / 32 - column_len, rad / 8, rad / 8);
                 }
             }
@@ -430,7 +431,7 @@ namespace SeaBattle
                 this.Left += e.X - lastpoint.X;
                 this.Top += e.Y - lastpoint.Y;
             }
-            
+
         }
 
         public void draw_hit(int x, int y)
@@ -439,8 +440,8 @@ namespace SeaBattle
             Graphics gr = pctrBxOut.CreateGraphics();
             Pen redPen = new Pen(Color.Red, 3);
             Pen yellowPen = new Pen(Color.Yellow, 2);
-            
-            gr.DrawLine(redPen, x + row_len / 2, y - column_len, x + row_len / 3, y - column_len / 2);           
+
+            gr.DrawLine(redPen, x + row_len / 2, y - column_len, x + row_len / 3, y - column_len / 2);
             gr.DrawLine(redPen, x + row_len / 2, y - column_len, x + 2 * row_len / 3, y - column_len / 2);
             gr.DrawLine(yellowPen, x + row_len / 2, y - column_len, x + row_len / 3 + 2, y - column_len / 2);
             gr.DrawLine(yellowPen, x + row_len / 2, y - column_len, x + 2 * row_len / 3 - 2, y - column_len / 2);
@@ -449,7 +450,7 @@ namespace SeaBattle
             gr.DrawLine(redPen, x + row_len, y - column_len * 3 / 4, x + 2 * row_len / 3, y - column_len / 2);
             gr.DrawLine(yellowPen, x + row_len, y - column_len * 3 / 4, x + 2 * row_len / 3 + 2, y - column_len / 2);
             gr.DrawLine(yellowPen, x + row_len, y - column_len * 3 / 4, x + 2 * row_len / 3 - 2, y - column_len / 4);
-            
+
             gr.DrawLine(redPen, x, y - column_len * 3 / 4, x + row_len / 3, y - column_len / 4);
             gr.DrawLine(redPen, x, y - column_len * 3 / 4, x + row_len / 3, y - column_len / 2);
             gr.DrawLine(yellowPen, x, y - column_len * 3 / 4, x + row_len / 3 + 2, y - column_len / 2);
@@ -508,13 +509,13 @@ namespace SeaBattle
                 if (cont == false)
                 {
                     //listBox1.Items.Clear();
-                    for(int i = 0; i < 10; i++)
+                    for (int i = 0; i < 10; i++)
                     {
-                        for(int j = 0; j < 10; j++)
+                        for (int j = 0; j < 10; j++)
                         {
                             if (cells[i, j] != 0)
                             {
-                               // listBox1.Items.Add("Rows " + i + " Columns " + j + " Value " + cells[i, j]);
+                                // listBox1.Items.Add("Rows " + i + " Columns " + j + " Value " + cells[i, j]);
                             }
                         }
                     }
@@ -675,79 +676,79 @@ namespace SeaBattle
                         {
                             isBreak = true;
                         }
-                            for (int i = 0; i < sel_ship + 2; i++)
+                        for (int i = 0; i < sel_ship + 2; i++)
+                        {
+                            if (is_horisontal == false)
                             {
-                                if (is_horisontal == false)
+                                if (i + sel_column < 10)
                                 {
-                                    if (i + sel_column < 10)
+                                    if (cells[sel_row, i + sel_column] == 0)
                                     {
-                                        if (cells[sel_row, i + sel_column] == 0)
-                                        {
-                                            //cells[sel_row, i + sel_column] = 1;
-                                        }
-                                        else
-                                        {
-                                            label1.ForeColor = Color.Red;
-                                            isBreak = true;
-                                            if (i == 0)
-                                            {
-                                                sel_cell_with_ship++;
-                                            }
-                                            else
-                                            {
-                                                isBreak = true;
-                                                label1.Text = "Error has been occured! You can't put one ship on another one!";
-                                            }
-                                            break;
-                                        }
+                                        //cells[sel_row, i + sel_column] = 1;
                                     }
                                     else
                                     {
                                         label1.ForeColor = Color.Red;
-                                        label1.Text = "Error has been occured! Index was out of the border!";
                                         isBreak = true;
+                                        if (i == 0)
+                                        {
+                                            sel_cell_with_ship++;
+                                        }
+                                        else
+                                        {
+                                            isBreak = true;
+                                            label1.Text = "Error has been occured! You can't put one ship on another one!";
+                                        }
                                         break;
                                     }
                                 }
                                 else
                                 {
-                                    if (i + sel_row < 10)
+                                    label1.ForeColor = Color.Red;
+                                    label1.Text = "Error has been occured! Index was out of the border!";
+                                    isBreak = true;
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                if (i + sel_row < 10)
+                                {
+                                    if (cells[sel_row + i, sel_column] == 0)
                                     {
-                                        if (cells[sel_row + i, sel_column] == 0)
-                                        {
-                                            //cells[sel_row + i, sel_column] = 1;
-                                        }
-                                        else
-                                        {
-                                            label1.ForeColor = Color.Red;
-                                            isBreak = true;
-                                            if (i == 0)
-                                            {
-                                                sel_cell_with_ship++;
-                                            }
-                                            else
-                                            {
-                                                isBreak = true;
-                                                label1.Text = "Error has been occured! You can't put one ship on another one!";
-                                            }
-                                        break; 
-                                        }
+                                        //cells[sel_row + i, sel_column] = 1;
                                     }
                                     else
                                     {
                                         label1.ForeColor = Color.Red;
-                                        label1.Text = "Error has been occured! Index was out of the border!";
                                         isBreak = true;
+                                        if (i == 0)
+                                        {
+                                            sel_cell_with_ship++;
+                                        }
+                                        else
+                                        {
+                                            isBreak = true;
+                                            label1.Text = "Error has been occured! You can't put one ship on another one!";
+                                        }
                                         break;
                                     }
                                 }
+                                else
+                                {
+                                    label1.ForeColor = Color.Red;
+                                    label1.Text = "Error has been occured! Index was out of the border!";
+                                    isBreak = true;
+                                    break;
+                                }
                             }
-                            //add_ship(Convert.ToInt16(rows[sel_row]), Convert.ToInt16(columns[sel_column]), sel_ship + 2, Color.Blue, is_horisontal, "");
-                            if (isBreak == false)
+                        }
+                        //add_ship(Convert.ToInt16(rows[sel_row]), Convert.ToInt16(columns[sel_column]), sel_ship + 2, Color.Blue, is_horisontal, "");
+                        if (isBreak == false)
+                        {
+                            for (int i = 0; i < sel_ship + 2; i++)
                             {
-                            for(int i = 0; i < sel_ship + 2; i++)
-                            {
-                                if(is_horisontal == false)
+                                if (is_horisontal == false)
                                 {
                                     cells[sel_row, sel_column + i] = 1;
                                 }
@@ -756,143 +757,143 @@ namespace SeaBattle
                                     cells[sel_row + i, sel_column] = 1;
                                 }
                             }
-                                if (sel_ship == 0)
-                                {
-                                    if (ships[0] == 1)
-                                    {
-                                        ships[1] = 1;
-                                        row_ship[1] = sel_row;
-                                        column_ship[1] = sel_column;
-                                        deck_ship[1] = sel_ship + 2;
-                                        hor_ship[1] = is_horisontal;
-                                    }
-                                    else
-                                    {
-                                        ships[0] = 1;
-                                        row_ship[0] = sel_row;
-                                        column_ship[0] = sel_column;
-                                        deck_ship[0] = sel_ship + 2;
-                                        hor_ship[0] = is_horisontal;
-                                    }
-                                }
-                                else if (sel_ship == 1)
-                                {
-                                    if (ships[2] == 1)
-                                    {
-                                        ships[3] = 1;
-                                        row_ship[3] = sel_row;
-                                        column_ship[3] = sel_column;
-                                        deck_ship[3] = sel_ship + 2;
-                                        hor_ship[3] = is_horisontal;
-                                    }
-                                    else
-                                    {
-                                        ships[2] = 1;
-                                        row_ship[2] = sel_row;
-                                        column_ship[2] = sel_column;
-                                        deck_ship[2] = sel_ship + 2;
-                                        hor_ship[2] = is_horisontal;
-                                    }
-                                }
-                                else if (sel_ship == 2)
-                                {
-                                    ships[4] = 1;
-                                    row_ship[4] = sel_row;
-                                    column_ship[4] = sel_column;
-                                    deck_ship[4] = sel_ship + 2;
-                                    hor_ship[4] = is_horisontal;
-                                }
-                                else if (sel_ship == 3)
-                                {
-                                    ships[5] = 1;
-                                    row_ship[5] = sel_row;
-                                    column_ship[5] = sel_column;
-                                    deck_ship[5] = sel_ship + 2;
-                                    hor_ship[5] = is_horisontal;
-                                }
-                                ships_left[sel_ship]--;
-                                if (left_ships == 1)
-                                {
-                                    pctrBxOut_MouseClick(pctrBxOut, e);
-                                }        
-                            }
-                            else
+                            if (sel_ship == 0)
                             {
-                                if (sel_cell_with_ship != 0)
+                                if (ships[0] == 1)
                                 {
-                                    bool broken = false;
-                                    int needed_ship = -1;
-                                    for (int i = 0; i < ships.Length; i++)
+                                    ships[1] = 1;
+                                    row_ship[1] = sel_row;
+                                    column_ship[1] = sel_column;
+                                    deck_ship[1] = sel_ship + 2;
+                                    hor_ship[1] = is_horisontal;
+                                }
+                                else
+                                {
+                                    ships[0] = 1;
+                                    row_ship[0] = sel_row;
+                                    column_ship[0] = sel_column;
+                                    deck_ship[0] = sel_ship + 2;
+                                    hor_ship[0] = is_horisontal;
+                                }
+                            }
+                            else if (sel_ship == 1)
+                            {
+                                if (ships[2] == 1)
+                                {
+                                    ships[3] = 1;
+                                    row_ship[3] = sel_row;
+                                    column_ship[3] = sel_column;
+                                    deck_ship[3] = sel_ship + 2;
+                                    hor_ship[3] = is_horisontal;
+                                }
+                                else
+                                {
+                                    ships[2] = 1;
+                                    row_ship[2] = sel_row;
+                                    column_ship[2] = sel_column;
+                                    deck_ship[2] = sel_ship + 2;
+                                    hor_ship[2] = is_horisontal;
+                                }
+                            }
+                            else if (sel_ship == 2)
+                            {
+                                ships[4] = 1;
+                                row_ship[4] = sel_row;
+                                column_ship[4] = sel_column;
+                                deck_ship[4] = sel_ship + 2;
+                                hor_ship[4] = is_horisontal;
+                            }
+                            else if (sel_ship == 3)
+                            {
+                                ships[5] = 1;
+                                row_ship[5] = sel_row;
+                                column_ship[5] = sel_column;
+                                deck_ship[5] = sel_ship + 2;
+                                hor_ship[5] = is_horisontal;
+                            }
+                            ships_left[sel_ship]--;
+                            if (left_ships == 1)
+                            {
+                                pctrBxOut_MouseClick(pctrBxOut, e);
+                            }
+                        }
+                        else
+                        {
+                            if (sel_cell_with_ship != 0)
+                            {
+                                bool broken = false;
+                                int needed_ship = -1;
+                                for (int i = 0; i < ships.Length; i++)
+                                {
+                                    // listBox1.Items.Add("ships.Length: " + ships.Length);
+                                    if (ships[i] == 1)
                                     {
-                                       // listBox1.Items.Add("ships.Length: " + ships.Length);
-                                        if (ships[i] == 1)
+                                        int curr_ship;
+                                        if (i == 0 || i == 1)
                                         {
-                                            int curr_ship;
-                                            if (i == 0 || i == 1)
+                                            curr_ship = 2;
+                                        }
+                                        else if (i == 2 || i == 3)
+                                        {
+                                            curr_ship = 3;
+                                        }
+                                        else if (i == 4)
+                                        {
+                                            curr_ship = 4;
+                                        }
+                                        else
+                                        {
+                                            curr_ship = 5;
+                                        }
+                                        for (int j = 0; j <= curr_ship; j++)
+                                        {
+                                            if (hor_ship[i] == true)
                                             {
-                                                curr_ship = 2;
-                                            }
-                                            else if (i == 2 || i == 3)
-                                            {
-                                                curr_ship = 3;
-                                            }
-                                            else if (i == 4)
-                                            {
-                                                curr_ship = 4;
+                                                if (column_ship[i] == sel_column && (row_ship[i] + j) == sel_row + 1)
+                                                {
+                                                    needed_ship = i;
+                                                    //listBox1.Items.Add("exp " + (row_ship[i] + j));
+                                                    //listBox1.Items.Add("reality " + (sel_row + 1));
+                                                    broken = true;
+                                                    break;
+                                                }
                                             }
                                             else
                                             {
-                                                curr_ship = 5;
-                                            }
-                                            for (int j = 0; j <= curr_ship; j++)
-                                            {
-                                                if (hor_ship[i] == true)
+                                                if (column_ship[i] + j == sel_column + 1 && row_ship[i] == sel_row)
                                                 {
-                                                    if (column_ship[i] == sel_column && (row_ship[i] + j) == sel_row + 1)
-                                                    {
-                                                        needed_ship = i;
-                                                        //listBox1.Items.Add("exp " + (row_ship[i] + j));
-                                                        //listBox1.Items.Add("reality " + (sel_row + 1));
-                                                        broken = true;
-                                                        break;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    if (column_ship[i] + j == sel_column + 1 && row_ship[i] == sel_row)
-                                                    {
-                                                        needed_ship = i;
-                                                        //listBox1.Items.Add("i: " + i);
-                                                        broken = true;
-                                                        break;
-                                                    }
+                                                    needed_ship = i;
+                                                    //listBox1.Items.Add("i: " + i);
+                                                    broken = true;
+                                                    break;
                                                 }
                                             }
-                                        }  
-                                        if(broken == true)
-                                        {
-                                            break;
                                         }
                                     }
-                                    ship_cross = needed_ship;
-                                    //listBox1.Items.Clear();
-                                    //listBox1.Items.Add("ships_cross: " + ship_cross);
-                                    //listBox1.Items.Add("needed_ship " + needed_ship);
-                                    if (is_horisontal == true)
+                                    if (broken == true)
                                     {
-                                        //column_ship[2] == sel_column && row_ship[2] + 3 + 1 == sel_row
-                                        //listBox1.Items.Add("Colomn_ship " + (column_ship[2]) + " Sel_column: " + sel_column);
-                                        //listBox1.Items.Add("row_ship " + (row_ship[2] + 2) + " Sel_row " + sel_row);
+                                        break;
+                                    }
+                                }
+                                ship_cross = needed_ship;
+                                //listBox1.Items.Clear();
+                                //listBox1.Items.Add("ships_cross: " + ship_cross);
+                                //listBox1.Items.Add("needed_ship " + needed_ship);
+                                if (is_horisontal == true)
+                                {
+                                    //column_ship[2] == sel_column && row_ship[2] + 3 + 1 == sel_row
+                                    //listBox1.Items.Add("Colomn_ship " + (column_ship[2]) + " Sel_column: " + sel_column);
+                                    //listBox1.Items.Add("row_ship " + (row_ship[2] + 2) + " Sel_row " + sel_row);
 
-                                    }
-                                    else
-                                    {
-                                       // listBox1.Items.Add("Colomn_ship " + (column_ship[2] + 3) + " Sel_column: " + sel_column);
-                                        //listBox1.Items.Add("row_ship " + row_ship[2] + " Sel_row " + sel_row);
-                                    }
+                                }
+                                else
+                                {
+                                    // listBox1.Items.Add("Colomn_ship " + (column_ship[2] + 3) + " Sel_column: " + sel_column);
+                                    //listBox1.Items.Add("row_ship " + row_ship[2] + " Sel_row " + sel_row);
                                 }
                             }
                         }
+                    }
                     /* else
                      {
                          label1.ForeColor = Color.Red;
@@ -946,7 +947,7 @@ namespace SeaBattle
                         }
                         else
                         {
-                            if (e.X > Convert.ToInt16(rows[row_ship[ship_cross]]) && e.Y < Convert.ToInt16(columns[column_ship[ship_cross]]- column_len + 15) && e.X < Convert.ToInt16(rows[row_ship[ship_cross]] + 15) && e.Y > Convert.ToInt16(columns[column_ship[ship_cross]] - column_len))
+                            if (e.X > Convert.ToInt16(rows[row_ship[ship_cross]]) && e.Y < Convert.ToInt16(columns[column_ship[ship_cross]] - column_len + 15) && e.X < Convert.ToInt16(rows[row_ship[ship_cross]] + 15) && e.Y > Convert.ToInt16(columns[column_ship[ship_cross]] - column_len))
                             {
                                 for (int i = column_ship[ship_cross]; i < column_ship[ship_cross] + curr_ship + 2; i++)
                                 {
@@ -1015,7 +1016,7 @@ namespace SeaBattle
                         btnStart.Show();
                     }
                 }
-                if(cont == true)
+                if (cont == true)
                 {
                     /*
                     deck_ship[0] = 2;
@@ -1029,16 +1030,16 @@ namespace SeaBattle
                     pctrBxOut.Refresh();
                     draw_table(true);
                     draw_table(false);
-                    
+
                     for (int i = 0; i < 6; i++)
                     {
                         if (ships[i] == 1)
                         {
                             add_ship(Convert.ToInt16(rows[row_ship[i]]), Convert.ToInt16(columns[column_ship[i]]), deck_ship[i], Color.Blue, hor_ship[i], "");
-                          //  add_ship(Convert.ToInt16(enemy_rows[enemy_row_ship[i]]), Convert.ToInt16(enemy_columns[enemy_column_ship[i]]), deck_ship[i], Color.Red, enemy_hor_ship[i], "");
+                            //  add_ship(Convert.ToInt16(enemy_rows[enemy_row_ship[i]]), Convert.ToInt16(enemy_columns[enemy_column_ship[i]]), deck_ship[i], Color.Red, enemy_hor_ship[i], "");
                         }
-                    }  
-                    if(players_turn == true)
+                    }
+                    if (players_turn == true)
                     {
                         label1.Text = "It's your turn";
                         label1.ForeColor = Color.Red;
@@ -1048,7 +1049,7 @@ namespace SeaBattle
                         int enemy_left_ships = 0;
                         for (int i = 0; i < 10; i++)
                         {
-                            for(int j = 0; j < 10; j++)
+                            for (int j = 0; j < 10; j++)
                             {
                                 if (shots[i, j] == 0)
                                 {
@@ -1080,7 +1081,7 @@ namespace SeaBattle
                                 //pctrBxOut_MouseClick(pctrBxOut, new Point(pctrBxOut.Width - 1, pctrBxOut.Height - 1));
                                 pctrBxOut_MouseClick(pctrBxOut, e);
                             }
-                            else if(enemy_cells[sel_hit_row, sel_hit_column] == 1)
+                            else if (enemy_cells[sel_hit_row, sel_hit_column] == 1)
                             {
                                 shots[sel_hit_row, sel_hit_column] = 2;
                                 listBox1.Items.Add("Hitted");
@@ -1089,11 +1090,11 @@ namespace SeaBattle
                                 for (int i = 0; i < enemy_ships.Length; i++)
                                 {
                                     bool matched = true;
-                                    for(int j = 0; j < deck_ship[i]; j++)
+                                    for (int j = 0; j < deck_ship[i]; j++)
                                     {
                                         if (enemy_hor_ship[i] == false)
                                         {
-                                            if(shots[enemy_row_ship[i], enemy_column_ship[i] + j] != 2)
+                                            if (shots[enemy_row_ship[i], enemy_column_ship[i] + j] != 2)
                                             {
                                                 matched = false;
                                             }
@@ -1106,16 +1107,16 @@ namespace SeaBattle
                                             }
                                         }
                                     }
-                                    if(matched)
+                                    if (matched)
                                     {
                                         enemy_ships[i] = 3;
-                                        if(i == 0 || i == 1)
+                                        if (i == 0 || i == 1)
                                         {
-                                            if(enemy_ships_left[0] != 0)
+                                            if (enemy_ships_left[0] != 0)
                                             {
                                                 enemy_ships_left[0] = 1;
                                             }
-                                            if(enemy_ships[0] == 3 && enemy_ships[1] == 3)
+                                            if (enemy_ships[0] == 3 && enemy_ships[1] == 3)
                                             {
                                                 enemy_ships_left[0] = 0;
                                             }
@@ -1126,14 +1127,14 @@ namespace SeaBattle
                                             {
                                                 enemy_ships_left[1] = 1;
                                             }
-                                            if(enemy_ships[2] == 3 && enemy_ships[3] == 3)
+                                            if (enemy_ships[2] == 3 && enemy_ships[3] == 3)
                                             {
                                                 enemy_ships_left[1] = 0;
                                             }
                                         }
                                         if (enemy_ships[4] == 3)
                                         {
-                                           enemy_ships_left[2] = 0;
+                                            enemy_ships_left[2] = 0;
                                         }
                                         if (enemy_ships[5] == 3)
                                         {
@@ -1217,7 +1218,7 @@ namespace SeaBattle
                                 {
                                     draw_cross(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
                                 }
-                                if (enemy_shots[i, j] == 2 || enemy_shots[i,j] == 3)
+                                if (enemy_shots[i, j] == 2 || enemy_shots[i, j] == 3)
                                 {
                                     draw_hit(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
                                 }
@@ -1229,7 +1230,7 @@ namespace SeaBattle
                         //Enemies turn
                         label1.Text = "Enemies_turn";
                         listBox1.Items.Clear();
-                       // listBox1.Items.Add("left_ships = " + left_ships);
+                        // listBox1.Items.Add("left_ships = " + left_ships);
                         if (difficulty == "Easy")
                         {
                             while (true)
@@ -1246,7 +1247,7 @@ namespace SeaBattle
                                     {
                                         add_ship(Convert.ToInt16(rows[row_ship[i]]), Convert.ToInt16(columns[column_ship[i]]), deck_ship[i], Color.Blue, hor_ship[i], "");
                                     }
-                                    
+
                                 }
 
                                 for (int i = 0; i < ships_left.Length; i++)
@@ -1263,7 +1264,7 @@ namespace SeaBattle
                                     enemy_shots[shooted_row, shooted_col] = 1;
                                     //exit_loop = true;
                                     players_turn = true;
-                                    
+
                                     listBox1.Items.Add("left_ships = " + left_ships);
 
                                     for (int i = 0; i < 10; i++)
@@ -1357,7 +1358,7 @@ namespace SeaBattle
                                         left_ships += ships_left[i];
                                         listBox1.Items.Add("ships_left[" + i + "] = " + ships_left[i]);
                                     }
-                                    listBox1.Items.Add("left_ships = " + left_ships);                                
+                                    listBox1.Items.Add("left_ships = " + left_ships);
 
                                 }
                                 if (left_ships == 0)
@@ -1389,7 +1390,7 @@ namespace SeaBattle
                                 }
                             }
                         }
-                        else if(difficulty == "Normal")
+                        else if (difficulty == "Normal")
                         {
                             while (true)
                             {
@@ -1426,7 +1427,7 @@ namespace SeaBattle
                                                 }
                                             }
                                             else
-                                            {                                              
+                                            {
                                                 if (enemy_shots[row_ship[i] + j, column_ship[i]] != 2)
                                                 {
                                                     matched = false;
@@ -1508,7 +1509,7 @@ namespace SeaBattle
                                         }
                                     }
 
-                                    
+
                                     for (int i = 0; i < 10; i++)
                                     {
                                         for (int j = 0; j < 10; j++)
@@ -1525,7 +1526,6 @@ namespace SeaBattle
                                             }
                                         }
                                     }
-
                                     if (any_hitted_ships == false)
                                     {
                                         if (cells[shooted_row, shooted_col] == 0)
@@ -1546,7 +1546,7 @@ namespace SeaBattle
                                                     {
                                                         draw_cross(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
                                                     }
-                                                    if (enemy_shots[i, j] == 2 || enemy_shots[i,j] == 3)
+                                                    if (enemy_shots[i, j] == 2 || enemy_shots[i, j] == 3)
                                                     {
                                                         draw_hit(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
                                                     }
@@ -1566,66 +1566,82 @@ namespace SeaBattle
                                         {
                                             draw_hit(Convert.ToInt32(rows[shooted_row]), Convert.ToInt32(columns[shooted_col]));
                                             cells[shooted_row, shooted_col] = 2;
-                                            enemy_shots[shooted_row, shooted_col] = 2;                             
+                                            enemy_shots[shooted_row, shooted_col] = 2;
                                         }
                                     }
                                     else if (any_hitted_ships == true)
                                     {
-                                        if (hitted_row != 0)
-                                        {
-                                            if (cells[hitted_row - 1, hitted_col] == 0 || cells[hitted_row - 1, hitted_col] == 1)
-                                            {
-                                                if (cells[hitted_row - 1, hitted_col] == 0)
-                                                {
-                                                    cells[hitted_row - 1, hitted_col] = 4;
-                                                    enemy_shots[hitted_row - 1, hitted_col] = 1;
-                                                    players_turn = true;
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    int hitted_ship = -1;
+                                        int hitted_ship = -1;                                      
 
-                                                    for (int ship = 0; ship < ships.Length; ship++)
+                                        for(int i = 0; i < 6; i++)
+                                        {
+                                            for(int j = 0; j < 10; j++)
+                                            {
+                                                if(hor_ship[i] == true)
+                                                {
+                                                    if(row_ship[i] + j == hitted_row && column_ship[i] == hitted_col)
                                                     {
-                                                        for (int i = 0; i < 10; i++)
+                                                        hitted_ship = i;
+                                                    }
+                                                }
+                                                else if(hor_ship[i] == false)
+                                                {
+                                                    if (row_ship[i] == hitted_row && column_ship[i] + j== hitted_col)
+                                                    {
+                                                        hitted_ship = i;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        if (order_of_check == 0)
+                                        {
+                                            if (hitted_row != 0)
+                                            {
+                                                if (cells[hitted_row - 1, hitted_col] == 0 || cells[hitted_row - 1, hitted_col] == 1)
+                                                {
+                                                    if (cells[hitted_row - 1, hitted_col] == 0)
+                                                    {
+                                                        cells[hitted_row - 1, hitted_col] = 4;
+                                                        enemy_shots[hitted_row - 1, hitted_col] = 1;
+                                                        players_turn = true;
+                                                        break;
+                                                    }
+                                                    else
+                                                    {
+
+
+                                                        for (int i = 0; i <= hitted_row - row_ship[hitted_ship]; i++)
                                                         {
-                                                            if (row_ship[ship] + i < 10) /*&& hor_ship[ship] == true)*/
+                                                            if (cells[hitted_row - i, hitted_col] == 1)
                                                             {
-                                                                if (row_ship[ship] + i == hitted_row && column_ship[ship] == hitted_col)
-                                                                {
-                                                                    hitted_ship = ship;
-                                                                }
+                                                                cells[hitted_row - i, hitted_col] = 2;
+                                                                enemy_shots[hitted_row - i, hitted_col] = 2;
                                                             }
                                                         }
-                                                    }
-
-                                                    for (int i = 0; i <= hitted_row - row_ship[hitted_ship]; i++)
-                                                    {
-                                                        if (cells[hitted_row - i, hitted_col] == 1)
+                                                        if (row_ship[hitted_ship] >= 1)
                                                         {
-                                                            cells[hitted_row - i, hitted_col] = 2;
-                                                            enemy_shots[hitted_row - i, hitted_col] = 2;
-                                                        }
-                                                    }
-                                                    if (row_ship[hitted_ship] >= 1)
-                                                    {
-                                                        if (cells[row_ship[hitted_ship] - 1, hitted_col] == 0)
-                                                        {
-                                                            cells[row_ship[hitted_ship] - 1, hitted_col] = 4;
-                                                            shots[row_ship[hitted_ship] - 1, hitted_col] = 1;
-                                                            players_turn = true;
-                                                            break;
-                                                        }
-                                                        else if (cells[row_ship[hitted_ship] - 1, hitted_col] == 1)
-                                                        {
-                                                            cells[row_ship[hitted_ship] - 1, hitted_col] = 2;
-                                                            shots[row_ship[hitted_ship] - 1, hitted_col] = 2;
+                                                            if (cells[row_ship[hitted_ship] - 1, hitted_col] == 0)
+                                                            {
+                                                                cells[row_ship[hitted_ship] - 1, hitted_col] = 4;
+                                                                shots[row_ship[hitted_ship] - 1, hitted_col] = 1;
+                                                                players_turn = true;
+                                                                break;
+                                                            }
+                                                            else if (cells[row_ship[hitted_ship] - 1, hitted_col] == 1)
+                                                            {
+                                                                cells[row_ship[hitted_ship] - 1, hitted_col] = 2;
+                                                                shots[row_ship[hitted_ship] - 1, hitted_col] = 2;
+                                                            }
                                                         }
                                                     }
                                                 }
                                             }
-                                            else if (hitted_row != 9)
+                                            order_of_check++;
+                                        }
+                                        if (order_of_check == 1)
+                                        {
+                                            if (hitted_row != 9)
                                             {
                                                 if (cells[hitted_row + 1, hitted_col] == 0 || cells[hitted_row + 1, hitted_col] == 1)
                                                 {
@@ -1638,22 +1654,6 @@ namespace SeaBattle
                                                     }
                                                     else
                                                     {
-                                                        int hitted_ship = -1;
-
-                                                        for (int ship = 0; ship < ships.Length; ship++)
-                                                        {
-                                                            for (int i = 0; i < 10; i++)
-                                                            {
-                                                                if (row_ship[ship] + i < 10)/*&& hor_ship[ship] == true)*/
-                                                                {
-                                                                    if (row_ship[ship] + i == hitted_row && column_ship[ship] == hitted_col)
-                                                                    {
-                                                                        hitted_ship = ship;
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-
                                                         for (int i = 0; i < -hitted_row + row_ship[hitted_ship] + deck_ship[hitted_ship]; i++)
                                                         {
                                                             if (cells[hitted_row + i, hitted_col] == 1)
@@ -1680,127 +1680,101 @@ namespace SeaBattle
                                                     }
                                                 }
                                             }
+                                            order_of_check++;
                                         }
-                                       
-                                        /*
-                                        else if (hitted_col != 0)
+                                        if (order_of_check == 2)
                                         {
-                                            if (cells[hitted_row, hitted_col - 1] == 0 || cells[hitted_row, hitted_col - 1] == 1)
+                                            if (hitted_col != 0)
                                             {
-                                                if (cells[hitted_row, hitted_col - 1] == 0)
+                                                if (cells[hitted_row, hitted_col - 1] == 0 || cells[hitted_row, hitted_col - 1] == 1)
                                                 {
-                                                    cells[hitted_row, hitted_col - 1] = 4;
-                                                    enemy_shots[hitted_row, hitted_col - 1] = 1;
-                                                    players_turn = true;
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    int hitted_ship = -1;
-
-                                                    for (int ship = 0; ship < ships.Length; ship++)
+                                                    if (cells[hitted_row, hitted_col - 1] == 0)
                                                     {
-                                                        for (int i = 0; i < 10; i++)
+                                                        cells[hitted_row, hitted_col - 1] = 4;
+                                                        enemy_shots[hitted_row, hitted_col - 1] = 1;
+                                                        players_turn = true;
+                                                        break;
+                                                    }
+                                                    else
+                                                    {                                                      
+                                                        for (int i = 0; i <= hitted_col - column_ship[hitted_ship]; i++)
                                                         {
-                                                            if (column_ship[ship] + i < 10 && hor_ship[ship] == false)
+                                                            if (cells[hitted_row, hitted_col - i] == 1)
                                                             {
-                                                                if (row_ship[ship] == hitted_row && column_ship[ship] + i == hitted_col)
-                                                                {
-                                                                    hitted_ship = ship;
-                                                                }
+                                                                cells[hitted_row, hitted_col - i] = 2;
+                                                                enemy_shots[hitted_row, hitted_col - i] = 2;
                                                             }
                                                         }
-                                                    }
-
-                                                    for (int i = 0; i <= hitted_col - column_ship[hitted_ship]; i++)
-                                                    {
-                                                        if (cells[hitted_row, hitted_col - i] == 1)
+                                                        if (column_ship[hitted_ship] >= 1)
                                                         {
-                                                            cells[hitted_row, hitted_col - i] = 2;
-                                                            enemy_shots[hitted_row, hitted_col - i] = 2;
-                                                        }
-                                                    }
-                                                    if (column_ship[hitted_ship] >= 1)
-                                                    {
-                                                        if (cells[row_ship[hitted_ship], hitted_col - 1] == 0)
-                                                        {
-                                                            cells[row_ship[hitted_ship], hitted_col - 1] = 4;
-                                                            shots[row_ship[hitted_ship], hitted_col - 1] = 1;
-                                                            players_turn = true;
-                                                            break;
-                                                        }
-                                                        else if (cells[row_ship[hitted_ship], hitted_col - 1] == 1)
-                                                        {
-                                                            cells[row_ship[hitted_ship], hitted_col - 1] = 2;
-                                                            shots[row_ship[hitted_ship], hitted_col - 1] = 2;
+                                                            if (cells[row_ship[hitted_ship], hitted_col - 1] == 0)
+                                                            {
+                                                                cells[row_ship[hitted_ship], hitted_col - 1] = 4;
+                                                                shots[row_ship[hitted_ship], hitted_col - 1] = 1;
+                                                                players_turn = true;
+                                                                break;
+                                                            }
+                                                            else if (cells[row_ship[hitted_ship], hitted_col - 1] == 1)
+                                                            {
+                                                                cells[row_ship[hitted_ship], hitted_col - 1] = 2;
+                                                                shots[row_ship[hitted_ship], hitted_col - 1] = 2;
+                                                            }
                                                         }
                                                     }
                                                 }
                                             }
+                                            order_of_check = 3;
                                         }
-                                        else if (hitted_col != 9)
+                                        if (order_of_check == 3)
                                         {
-                                            if (cells[hitted_row, hitted_col + 1] == 0 || cells[hitted_row, hitted_col + 1] == 1)
+                                            if (hitted_col != 9)
                                             {
-                                                if (cells[hitted_row, hitted_col + 1] == 0)
+                                                if (cells[hitted_row, hitted_col + 1] == 0 || cells[hitted_row, hitted_col + 1] == 1)
                                                 {
-                                                    cells[hitted_row, hitted_col + 1] = 4;
-                                                    enemy_shots[hitted_row, hitted_col + 1] = 1;
-                                                    players_turn = true;
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    int hitted_ship = -1;
-
-                                                    for (int ship = 0; ship < ships.Length; ship++)
+                                                    if (cells[hitted_row, hitted_col + 1] == 0)
                                                     {
-                                                        for (int i = 0; i < 10; i++)
+                                                        cells[hitted_row, hitted_col + 1] = 4;
+                                                        enemy_shots[hitted_row, hitted_col + 1] = 1;
+                                                        players_turn = true;
+                                                        break;
+                                                    }
+                                                    else
+                                                    {
+                                                        for (int i = 0; i < -hitted_col + column_ship[hitted_ship] + deck_ship[hitted_ship]; i++)
                                                         {
-                                                            if (column_ship[ship] + i < 10 && hor_ship[ship] == false)
+                                                            if (cells[hitted_row, hitted_col + i] == 1)
                                                             {
-                                                                if (row_ship[ship] == hitted_row && column_ship[ship] + i == hitted_col)
-                                                                {
-                                                                    hitted_ship = ship;
-                                                                }
+                                                                cells[hitted_row, hitted_col + i] = 2;
+                                                                enemy_shots[hitted_row, hitted_col + i] = 2;
                                                             }
                                                         }
-                                                    }
-
-                                                    for (int i = 0; i < -hitted_col + column_ship[hitted_ship] + deck_ship[hitted_ship]; i++)
-                                                    {
-                                                        if (cells[hitted_row, hitted_col + i] == 1)
+                                                        if (columns[hitted_ship] < 9)
                                                         {
-                                                            cells[hitted_row, hitted_col + i] = 2;
-                                                            enemy_shots[hitted_row, hitted_col + i] = 2;
-                                                        }
-                                                    }
-                                                    if (columns[hitted_ship] < 9)
-                                                    {
-                                                        if (cells[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] == 0)
-                                                        {
-                                                            cells[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] = 4;
-                                                            shots[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] = 1;
-                                                            players_turn = true;
-                                                            break;
-                                                        }
-                                                        else if (cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] == 1)
-                                                        {
-                                                            cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
-                                                            shots[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
+                                                            if (cells[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] == 0)
+                                                            {
+                                                                cells[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] = 4;
+                                                                shots[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] = 1;
+                                                                players_turn = true;
+                                                                break;
+                                                            }
+                                                            else if (cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] == 1)
+                                                            {
+                                                                cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
+                                                                shots[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
+                                                            }
                                                         }
                                                     }
                                                 }
                                             }
-                                        }*/
-
+                                            order_of_check = 0;
+                                        }
                                         else
                                         {
                                             listBox1.Items.Add("error");
                                             players_turn = true;
                                             break;
                                         }
-                                        
+
                                     }
                                 }
 
@@ -1814,31 +1788,31 @@ namespace SeaBattle
 
                                 if (left_ships == 0)
                                 {
-                                        for (int i = 0; i < 10; i++)
+                                    for (int i = 0; i < 10; i++)
+                                    {
+                                        for (int j = 0; j < 10; j++)
                                         {
-                                            for (int j = 0; j < 10; j++)
+                                            if (enemy_shots[i, j] == 1)
                                             {
-                                                if (enemy_shots[i, j] == 1)
-                                                {
-                                                    draw_cross(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
-                                                }
-                                                if (enemy_shots[i, j] == 2)
-                                                {
-                                                    draw_hit(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
-                                                }
-                                                if (shots[i, j] == 1)
-                                                {
-                                                    draw_cross(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
-                                                }
-                                                if (shots[i, j] == 2)
-                                                {
-                                                    draw_hit(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
-                                                }
+                                                draw_cross(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
+                                            }
+                                            if (enemy_shots[i, j] == 2)
+                                            {
+                                                draw_hit(Convert.ToInt32(rows[i]), Convert.ToInt32(columns[j]));
+                                            }
+                                            if (shots[i, j] == 1)
+                                            {
+                                                draw_cross(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
+                                            }
+                                            if (shots[i, j] == 2)
+                                            {
+                                                draw_hit(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
                                             }
                                         }
-                                        is_all_ships_dead = true;
-                                        MessageBox.Show("Enemy won!");
-                                }                              
+                                    }
+                                    is_all_ships_dead = true;
+                                    MessageBox.Show("Enemy won!");
+                                }
                             }
                         }
                     }
@@ -1863,11 +1837,11 @@ namespace SeaBattle
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(comboBox1.SelectedIndex == 0)
+            if (comboBox1.SelectedIndex == 0)
             {
                 difficulty = "Easy";
             }
-            else if(comboBox1.SelectedIndex == 1)
+            else if (comboBox1.SelectedIndex == 1)
             {
                 difficulty = "Normal";
             }
@@ -1875,7 +1849,7 @@ namespace SeaBattle
 
         private void btnStart_MouseClick(object sender, MouseEventArgs e)
         {
-            if(is_button_clicked == false)
+            if (is_button_clicked == false)
             {
                 btnStart.Hide();
                 comboBox1.Hide();
@@ -1905,7 +1879,7 @@ namespace SeaBattle
                 }
                 */
             }
-            else if(cont == false) //&& e.X > this.Width * 3 / 4)
+            else if (cont == false) //&& e.X > this.Width * 3 / 4)
             {
                 cont = true;
                 ships_left[0] = 2;
@@ -1924,14 +1898,14 @@ namespace SeaBattle
             start_form.FormBorderStyle = FormBorderStyle.None;
             this.Panel_Form.Controls.Add(start_form);
             start_form.Show();*/
-                //draw_table(false);
-                //draw_table(true);
+            //draw_table(false);
+            //draw_table(true);
             pctrBxOut.Hide();
             fill_cells_arr();
 
             comboBox1.Items.Add("Easy");
             comboBox1.Items.Add("Normal");
-            comboBox1.SelectedIndex = 1;          
+            comboBox1.SelectedIndex = 1;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -2024,7 +1998,7 @@ namespace SeaBattle
             add_ship(Convert.ToInt16(enemy_rows[7]), Convert.ToInt16(enemy_columns[3]), 3, Color.Blue, false, "" + enemy_ships_left[1]);
             add_ship(Convert.ToInt16(enemy_rows[9]), Convert.ToInt16(enemy_columns[0]), 4, Color.Blue, false, "" + enemy_ships_left[2]);
             add_ship(Convert.ToInt16(enemy_rows[9]), Convert.ToInt16(enemy_columns[5]), 5, Color.Blue, false, "" + enemy_ships_left[3]);
-         */   
+         */
         }
     }
 }
