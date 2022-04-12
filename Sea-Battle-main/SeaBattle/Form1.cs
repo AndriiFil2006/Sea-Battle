@@ -23,7 +23,6 @@ namespace SeaBattle
         int column_len = 5;
         int ship_cross = -1;
         int cross_on_ship = -1;
-        int order_of_check = 0;
         string difficulty = "Normal";
 
         //array ships will have 4 values: 0 - not in the table, 1 - on the table and haven't hited, 2 - on the table, hitted, 3 - dead
@@ -1526,6 +1525,7 @@ namespace SeaBattle
                                             }
                                         }
                                     }
+
                                     if (any_hitted_ships == false)
                                     {
                                         if (cells[shooted_row, shooted_col] == 0)
@@ -1571,209 +1571,193 @@ namespace SeaBattle
                                     }
                                     else if (any_hitted_ships == true)
                                     {
-                                        int hitted_ship = -1;                                      
+                                        int hitted_ship = -1;
 
-                                        for(int i = 0; i < 6; i++)
+                                        for (int i = 0; i < 6; i++)
                                         {
-                                            for(int j = 0; j < 10; j++)
+                                            for (int j = 0; j < 10; j++)
                                             {
-                                                if(hor_ship[i] == true)
+                                                if (hor_ship[i] == true)
                                                 {
-                                                    if(row_ship[i] + j == hitted_row && column_ship[i] == hitted_col)
+                                                    if (row_ship[i] + j == hitted_row && column_ship[i] == hitted_col)
                                                     {
                                                         hitted_ship = i;
                                                     }
                                                 }
-                                                else if(hor_ship[i] == false)
+                                                else if (hor_ship[i] == false)
                                                 {
-                                                    if (row_ship[i] == hitted_row && column_ship[i] + j== hitted_col)
+                                                    if (row_ship[i] == hitted_row && column_ship[i] + j == hitted_col)
                                                     {
                                                         hitted_ship = i;
                                                     }
                                                 }
                                             }
                                         }
+                                        listBox1.Items.Add("hitted ship: " + hitted_ship);
 
-                                        if (order_of_check == 0)
+                                        if (hitted_row != 0)
                                         {
-                                            if (hitted_row != 0)
+                                            if (cells[hitted_row - 1, hitted_col] == 0 || cells[hitted_row - 1, hitted_col] == 1)
                                             {
-                                                if (cells[hitted_row - 1, hitted_col] == 0 || cells[hitted_row - 1, hitted_col] == 1)
+                                                if (cells[hitted_row - 1, hitted_col] == 0)
                                                 {
-                                                    if (cells[hitted_row - 1, hitted_col] == 0)
+                                                    cells[hitted_row - 1, hitted_col] = 4;
+                                                    enemy_shots[hitted_row - 1, hitted_col] = 1;
+                                                    players_turn = true;
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    for (int i = 0; i <= hitted_row - row_ship[hitted_ship]; i++)
                                                     {
-                                                        cells[hitted_row - 1, hitted_col] = 4;
-                                                        enemy_shots[hitted_row - 1, hitted_col] = 1;
-                                                        players_turn = true;
-                                                        break;
-                                                    }
-                                                    else
-                                                    {
-
-
-                                                        for (int i = 0; i <= hitted_row - row_ship[hitted_ship]; i++)
+                                                        if (cells[hitted_row - i, hitted_col] == 1)
                                                         {
-                                                            if (cells[hitted_row - i, hitted_col] == 1)
-                                                            {
-                                                                cells[hitted_row - i, hitted_col] = 2;
-                                                                enemy_shots[hitted_row - i, hitted_col] = 2;
-                                                            }
+                                                            cells[hitted_row - i, hitted_col] = 2;
+                                                            enemy_shots[hitted_row - i, hitted_col] = 2;
                                                         }
-                                                        if (row_ship[hitted_ship] >= 1)
+                                                    }
+                                                    if (row_ship[hitted_ship] >= 1)
+                                                    {
+                                                        if (cells[row_ship[hitted_ship] - 1, hitted_col] == 0)
                                                         {
-                                                            if (cells[row_ship[hitted_ship] - 1, hitted_col] == 0)
-                                                            {
-                                                                cells[row_ship[hitted_ship] - 1, hitted_col] = 4;
-                                                                shots[row_ship[hitted_ship] - 1, hitted_col] = 1;
-                                                                players_turn = true;
-                                                                break;
-                                                            }
-                                                            else if (cells[row_ship[hitted_ship] - 1, hitted_col] == 1)
-                                                            {
-                                                                cells[row_ship[hitted_ship] - 1, hitted_col] = 2;
-                                                                shots[row_ship[hitted_ship] - 1, hitted_col] = 2;
-                                                            }
+                                                            cells[row_ship[hitted_ship] - 1, hitted_col] = 4;
+                                                            shots[row_ship[hitted_ship] - 1, hitted_col] = 1;
+                                                            players_turn = true;
+                                                            break;
+                                                        }
+                                                        else if (cells[row_ship[hitted_ship] - 1, hitted_col] == 1)
+                                                        {
+                                                            cells[row_ship[hitted_ship] - 1, hitted_col] = 2;
+                                                            shots[row_ship[hitted_ship] - 1, hitted_col] = 2;
                                                         }
                                                     }
                                                 }
                                             }
-                                            order_of_check++;
                                         }
-                                        if (order_of_check == 1)
+                                        if (hitted_row != 9)
                                         {
-                                            if (hitted_row != 9)
+                                            if (cells[hitted_row + 1, hitted_col] == 0 || cells[hitted_row + 1, hitted_col] == 1)
                                             {
-                                                if (cells[hitted_row + 1, hitted_col] == 0 || cells[hitted_row + 1, hitted_col] == 1)
+                                                if (cells[hitted_row + 1, hitted_col] == 0)
                                                 {
-                                                    if (cells[hitted_row + 1, hitted_col] == 0)
+                                                    cells[hitted_row + 1, hitted_col] = 4;
+                                                    enemy_shots[hitted_row + 1, hitted_col] = 1;
+                                                    players_turn = true;
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    for (int i = 0; i < -hitted_row + row_ship[hitted_ship] + deck_ship[hitted_ship]; i++)
                                                     {
-                                                        cells[hitted_row + 1, hitted_col] = 4;
-                                                        enemy_shots[hitted_row + 1, hitted_col] = 1;
-                                                        players_turn = true;
-                                                        break;
-                                                    }
-                                                    else
-                                                    {
-                                                        for (int i = 0; i < -hitted_row + row_ship[hitted_ship] + deck_ship[hitted_ship]; i++)
+                                                        if (cells[hitted_row + i, hitted_col] == 1)
                                                         {
-                                                            if (cells[hitted_row + i, hitted_col] == 1)
-                                                            {
-                                                                cells[hitted_row + i, hitted_col] = 2;
-                                                                enemy_shots[hitted_row + i, hitted_col] = 2;
-                                                            }
+                                                            cells[hitted_row + i, hitted_col] = 2;
+                                                            enemy_shots[hitted_row + i, hitted_col] = 2;
                                                         }
-                                                        if (rows[hitted_ship] < 9)
+                                                    }
+                                                    if (rows[hitted_ship] < 9)
+                                                    {
+                                                        if (cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] == 0)
                                                         {
-                                                            if (cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] == 0)
-                                                            {
-                                                                cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 4;
-                                                                shots[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 1;
-                                                                players_turn = true;
-                                                                break;
-                                                            }
-                                                            else if (cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] == 1)
-                                                            {
-                                                                cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
-                                                                shots[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
-                                                            }
+                                                            cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 4;
+                                                            shots[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 1;
+                                                            players_turn = true;
+                                                            break;
+                                                        }
+                                                        else if (cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] == 1)
+                                                        {
+                                                            cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
+                                                            shots[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
                                                         }
                                                     }
                                                 }
                                             }
-                                            order_of_check++;
                                         }
-                                        if (order_of_check == 2)
+                                        if (hitted_col != 0)
                                         {
-                                            if (hitted_col != 0)
+                                            if (cells[hitted_row, hitted_col - 1] == 0 || cells[hitted_row, hitted_col - 1] == 1)
                                             {
-                                                if (cells[hitted_row, hitted_col - 1] == 0 || cells[hitted_row, hitted_col - 1] == 1)
+                                                if (cells[hitted_row, hitted_col - 1] == 0)
                                                 {
-                                                    if (cells[hitted_row, hitted_col - 1] == 0)
+                                                    cells[hitted_row, hitted_col - 1] = 4;
+                                                    enemy_shots[hitted_row, hitted_col - 1] = 1;
+                                                    players_turn = true;
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    for (int i = 0; i <= hitted_col - column_ship[hitted_ship]; i++)
                                                     {
-                                                        cells[hitted_row, hitted_col - 1] = 4;
-                                                        enemy_shots[hitted_row, hitted_col - 1] = 1;
-                                                        players_turn = true;
-                                                        break;
-                                                    }
-                                                    else
-                                                    {                                                      
-                                                        for (int i = 0; i <= hitted_col - column_ship[hitted_ship]; i++)
+                                                        if (cells[hitted_row, hitted_col - i] == 1)
                                                         {
-                                                            if (cells[hitted_row, hitted_col - i] == 1)
-                                                            {
-                                                                cells[hitted_row, hitted_col - i] = 2;
-                                                                enemy_shots[hitted_row, hitted_col - i] = 2;
-                                                            }
+                                                            cells[hitted_row, hitted_col - i] = 2;
+                                                            enemy_shots[hitted_row, hitted_col - i] = 2;
                                                         }
-                                                        if (column_ship[hitted_ship] >= 1)
+                                                    }
+                                                    if (column_ship[hitted_ship] >= 1)
+                                                    {
+                                                        if (cells[row_ship[hitted_ship], hitted_col - 1] == 0)
                                                         {
-                                                            if (cells[row_ship[hitted_ship], hitted_col - 1] == 0)
-                                                            {
-                                                                cells[row_ship[hitted_ship], hitted_col - 1] = 4;
-                                                                shots[row_ship[hitted_ship], hitted_col - 1] = 1;
-                                                                players_turn = true;
-                                                                break;
-                                                            }
-                                                            else if (cells[row_ship[hitted_ship], hitted_col - 1] == 1)
-                                                            {
-                                                                cells[row_ship[hitted_ship], hitted_col - 1] = 2;
-                                                                shots[row_ship[hitted_ship], hitted_col - 1] = 2;
-                                                            }
+                                                            cells[row_ship[hitted_ship], hitted_col - 1] = 4;
+                                                            shots[row_ship[hitted_ship], hitted_col - 1] = 1;
+                                                            players_turn = true;
+                                                            break;
+                                                        }
+                                                        else if (cells[row_ship[hitted_ship], hitted_col - 1] == 1)
+                                                        {
+                                                            cells[row_ship[hitted_ship], hitted_col - 1] = 2;
+                                                            shots[row_ship[hitted_ship], hitted_col - 1] = 2;
                                                         }
                                                     }
                                                 }
                                             }
-                                            order_of_check = 3;
                                         }
-                                        if (order_of_check == 3)
+                                        if (hitted_col != 9)
                                         {
-                                            if (hitted_col != 9)
+                                            if (cells[hitted_row, hitted_col + 1] == 0 || cells[hitted_row, hitted_col + 1] == 1)
                                             {
-                                                if (cells[hitted_row, hitted_col + 1] == 0 || cells[hitted_row, hitted_col + 1] == 1)
+                                                if (cells[hitted_row, hitted_col + 1] == 0)
                                                 {
-                                                    if (cells[hitted_row, hitted_col + 1] == 0)
+                                                    cells[hitted_row, hitted_col + 1] = 4;
+                                                    enemy_shots[hitted_row, hitted_col + 1] = 1;
+                                                    players_turn = true;
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    for (int i = 0; i < -hitted_col + column_ship[hitted_ship] + deck_ship[hitted_ship]; i++)
                                                     {
-                                                        cells[hitted_row, hitted_col + 1] = 4;
-                                                        enemy_shots[hitted_row, hitted_col + 1] = 1;
-                                                        players_turn = true;
-                                                        break;
-                                                    }
-                                                    else
-                                                    {
-                                                        for (int i = 0; i < -hitted_col + column_ship[hitted_ship] + deck_ship[hitted_ship]; i++)
+                                                        if (cells[hitted_row, hitted_col + i] == 1)
                                                         {
-                                                            if (cells[hitted_row, hitted_col + i] == 1)
-                                                            {
-                                                                cells[hitted_row, hitted_col + i] = 2;
-                                                                enemy_shots[hitted_row, hitted_col + i] = 2;
-                                                            }
+                                                            cells[hitted_row, hitted_col + i] = 2;
+                                                            enemy_shots[hitted_row, hitted_col + i] = 2;
                                                         }
-                                                        if (columns[hitted_ship] < 9)
+                                                    }
+                                                    if (columns[hitted_ship] < 9)
+                                                    {
+                                                        if (cells[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] == 0)
                                                         {
-                                                            if (cells[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] == 0)
-                                                            {
-                                                                cells[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] = 4;
-                                                                shots[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] = 1;
-                                                                players_turn = true;
-                                                                break;
-                                                            }
-                                                            else if (cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] == 1)
-                                                            {
-                                                                cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
-                                                                shots[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
-                                                            }
+                                                            cells[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] = 4;
+                                                            shots[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] = 1;
+                                                            players_turn = true;
+                                                            break;
+                                                        }
+                                                        else if (cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] == 1)
+                                                        {
+                                                            cells[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
+                                                            shots[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 2;
                                                         }
                                                     }
                                                 }
                                             }
-                                            order_of_check = 0;
                                         }
+                                        /*
                                         else
                                         {
                                             listBox1.Items.Add("error");
                                             players_turn = true;
                                             break;
-                                        }
+                                        }*/
 
                                     }
                                 }
