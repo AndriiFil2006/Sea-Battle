@@ -1258,6 +1258,7 @@ namespace SeaBattle
 
                                 if (cells[shooted_row, shooted_col] == 0)
                                 {
+                                    System.Threading.Thread.Sleep(100);
                                     draw_cross(Convert.ToInt32(rows[shooted_row]), Convert.ToInt32(columns[shooted_col]));
                                     cells[shooted_row, shooted_col] = 4;
                                     enemy_shots[shooted_row, shooted_col] = 1;
@@ -1265,7 +1266,7 @@ namespace SeaBattle
                                     players_turn = true;
 
                                     listBox1.Items.Add("left_ships = " + left_ships);
-
+                                    /*
                                     for (int i = 0; i < 10; i++)
                                     {
                                         for (int j = 0; j < 10; j++)
@@ -1287,11 +1288,12 @@ namespace SeaBattle
                                                 draw_hit(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
                                             }
                                         }
-                                    }
+                                    }*/
                                     break;
                                 }
                                 else if (cells[shooted_row, shooted_col] == 1)
                                 {
+                                    System.Threading.Thread.Sleep(100);
                                     draw_hit(Convert.ToInt32(rows[shooted_row]), Convert.ToInt32(columns[shooted_col]));
                                     cells[shooted_row, shooted_col] = 2;
                                     enemy_shots[shooted_row, shooted_col] = 2;
@@ -1412,6 +1414,9 @@ namespace SeaBattle
                                 if (cells[shooted_row, shooted_col] == 0 || cells[shooted_row, shooted_col] == 1)
                                 {
                                     listBox1.Items.Clear();
+                                    listBox1.Items.Add("Wait");
+
+                                    //System.Threading.Thread.Sleep(100);
 
                                     for (int i = 0; i < 6; i++)/*ships.Length; i++)*/
                                     {
@@ -1530,14 +1535,13 @@ namespace SeaBattle
                                     {
                                         if (cells[shooted_row, shooted_col] == 0)
                                         {
-                                            draw_cross(Convert.ToInt32(rows[shooted_row]), Convert.ToInt32(columns[shooted_col]));
                                             cells[shooted_row, shooted_col] = 4;
                                             enemy_shots[shooted_row, shooted_col] = 1;
                                             //exit_loop = true;
                                             players_turn = true;
 
                                             listBox1.Items.Add("left_ships = " + left_ships);
-
+                                            /*
                                             for (int i = 0; i < 10; i++)
                                             {
                                                 for (int j = 0; j < 10; j++)
@@ -1559,11 +1563,17 @@ namespace SeaBattle
                                                         draw_hit(Convert.ToInt32(enemy_rows[i]), Convert.ToInt32(enemy_columns[j]));
                                                     }
                                                 }
-                                            }
+                                            }*/
+                                            System.Threading.Thread.Sleep(100);
+
+                                            draw_cross(Convert.ToInt32(rows[shooted_row]), Convert.ToInt32(columns[shooted_col]));
+
                                             break;
                                         }
                                         else if (cells[shooted_row, shooted_col] == 1)
                                         {
+                                            System.Threading.Thread.Sleep(100);
+
                                             draw_hit(Convert.ToInt32(rows[shooted_row]), Convert.ToInt32(columns[shooted_col]));
                                             cells[shooted_row, shooted_col] = 2;
                                             enemy_shots[shooted_row, shooted_col] = 2;
@@ -1571,6 +1581,8 @@ namespace SeaBattle
                                     }
                                     else if (any_hitted_ships == true)
                                     {
+                                        System.Threading.Thread.Sleep(100);
+
                                         int hitted_ship = -1;
 
                                         for (int i = 0; i < 6; i++)
