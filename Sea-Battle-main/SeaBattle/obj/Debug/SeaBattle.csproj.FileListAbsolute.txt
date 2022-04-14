@@ -36,3 +36,4 @@ C:\work\programing\projects\sea battle\Sea-Battle-main\SeaBattle\obj\Debug\SeaBa
 C:\work\programing\projects\sea battle\Sea-Battle-main\SeaBattle\bin\Debug\SeaBattle.exe.config
 C:\work\programing\projects\sea battle\Sea-Battle-main\SeaBattle\bin\Debug\SeaBattle.exe
 C:\work\programing\projects\sea battle\Sea-Battle-main\SeaBattle\bin\Debug\SeaBattle.pdb
+C:\work\programing\projects\sea battle\Sea-Battle-main\SeaBattle\obj\Debug\SeaBattle.won_or_lost_form.resources

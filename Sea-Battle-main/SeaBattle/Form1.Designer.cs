@@ -36,6 +36,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.lbl_diff = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.show_panel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pctrBxOut)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             // 
             // pctrBxOut
             // 
-            this.pctrBxOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.pctrBxOut.BackColor = System.Drawing.Color.LightSlateGray;
             this.pctrBxOut.Location = new System.Drawing.Point(-2, 37);
             this.pctrBxOut.Name = "pctrBxOut";
             this.pctrBxOut.Size = new System.Drawing.Size(1204, 653);
@@ -112,12 +113,21 @@
             this.comboBox1.TabIndex = 8;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // show_panel
+            // 
+            this.show_panel.Location = new System.Drawing.Point(12, 13);
+            this.show_panel.Name = "show_panel";
+            this.show_panel.Size = new System.Drawing.Size(42, 21);
+            this.show_panel.TabIndex = 9;
+            this.show_panel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.BackColor = System.Drawing.Color.LightSlateGray;
             this.ClientSize = new System.Drawing.Size(1554, 688);
+            this.Controls.Add(this.show_panel);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lbl_diff);
             this.Controls.Add(this.listBox1);
@@ -148,6 +158,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label lbl_diff;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel show_panel;
     }
 }
 
