@@ -55,7 +55,7 @@
             // 
             // pctrBxOut
             // 
-            this.pctrBxOut.BackColor = System.Drawing.Color.LightSlateGray;
+            this.pctrBxOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(3)))), ((int)(((byte)(59)))));
             this.pctrBxOut.Location = new System.Drawing.Point(-2, 37);
             this.pctrBxOut.Name = "pctrBxOut";
             this.pctrBxOut.Size = new System.Drawing.Size(1204, 653);
@@ -125,8 +125,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.ClientSize = new System.Drawing.Size(1554, 688);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(3)))), ((int)(((byte)(59)))));
+            this.ClientSize = new System.Drawing.Size(1210, 688);
             this.Controls.Add(this.show_panel);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lbl_diff);

@@ -26,6 +26,7 @@ namespace SeaBattle
         string difficulty = "Normal";
         bool is_enemy_won = false;
         bool is_player_won = false;
+        
 
         //array ships will have 4 values: 0 - not in the table, 1 - on the table and haven't hited, 2 - on the table, hitted, 3 - dead
         int[] ships = new int[8];
@@ -554,6 +555,8 @@ namespace SeaBattle
                         else
                         {
                             label1.ForeColor = Color.Red;
+                            label1.BackColor = Color.White;
+                            label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                             label1.Text = "Error has been occured! You can't pick this ship, because you don't have any of them left";
                         }
                         //add_ship(Convert.ToInt16(enemy_rows[0]), Convert.ToInt16(enemy_columns[6]), 5, Color.Yellow, true, "" + ships_left[3]);
@@ -568,6 +571,8 @@ namespace SeaBattle
                         else
                         {
                             label1.ForeColor = Color.Red;
+                            label1.BackColor = Color.White;
+                            label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                             label1.Text = "Error has been occured! You can't pick this ship, because you don't have any of them left";
                         }
                         // add_ship(Convert.ToInt16(enemy_rows[0]), Convert.ToInt16(enemy_columns[6]), 2, Color.Yellow, true, "" + ships_left[0]);
@@ -583,6 +588,8 @@ namespace SeaBattle
                         else
                         {
                             label1.ForeColor = Color.Red;
+                            label1.BackColor = Color.White;
+                            label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                             label1.Text = "Error has been occured! You can't pick this ship, because you don't have any of them left";
                         }
                     }
@@ -596,6 +603,8 @@ namespace SeaBattle
                         else
                         {
                             label1.ForeColor = Color.Red;
+                            label1.BackColor = Color.White;
+                            label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                             label1.Text = "Error has been occured! You can't pick this ship, because you don't have any of them left";
                         }
                     }
@@ -609,6 +618,8 @@ namespace SeaBattle
                         else
                         {
                             label1.ForeColor = Color.Red;
+                            label1.BackColor = Color.White;
+                            label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                             label1.Text = "Error has been occured! You can't pick this ship, because you don't have any of them left";
                         }
                     }
@@ -622,6 +633,8 @@ namespace SeaBattle
                         else
                         {
                             label1.ForeColor = Color.Red;
+                            label1.BackColor = Color.White;
+                            label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                             label1.Text = "Error has been occured! You can't pick this ship, because you don't have any of them left";
                         }
                     }
@@ -635,6 +648,8 @@ namespace SeaBattle
                         else
                         {
                             label1.ForeColor = Color.Red;
+                            label1.BackColor = Color.White;
+                            label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                             label1.Text = "Error has been occured! You can't pick this ship, because you don't have any of them left";
                         }
                     }
@@ -648,6 +663,8 @@ namespace SeaBattle
                         else
                         {
                             label1.ForeColor = Color.Red;
+                            label1.BackColor = Color.White;
+                            label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                             label1.Text = "Error has been occured! You can't pick this ship, because you don't have any of them left";
                         }
                     }
@@ -698,6 +715,8 @@ namespace SeaBattle
                                         else
                                         {
                                             isBreak = true;
+                                            label1.BackColor = Color.White;
+                                            label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                                             label1.Text = "Error has been occured! You can't put one ship on another one!";
                                         }
                                         break;
@@ -706,6 +725,8 @@ namespace SeaBattle
                                 else
                                 {
                                     label1.ForeColor = Color.Red;
+                                    label1.BackColor = Color.White;
+                                    label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                                     label1.Text = "Error has been occured! Index was out of the border!";
                                     isBreak = true;
                                     break;
@@ -730,6 +751,8 @@ namespace SeaBattle
                                         else
                                         {
                                             isBreak = true;
+                                            label1.BackColor = Color.White;
+                                            label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                                             label1.Text = "Error has been occured! You can't put one ship on another one!";
                                         }
                                         break;
@@ -738,6 +761,8 @@ namespace SeaBattle
                                 else
                                 {
                                     label1.ForeColor = Color.Red;
+                                    label1.BackColor = Color.White;
+                                    label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
                                     label1.Text = "Error has been occured! Index was out of the border!";
                                     isBreak = true;
                                     break;
@@ -815,7 +840,7 @@ namespace SeaBattle
                             ships_left[sel_ship]--;
                             if (left_ships == 1)
                             {
-                                pctrBxOut_MouseClick(pctrBxOut, e);
+                                //pctrBxOut_MouseClick(pctrBxOut, e);
                             }
                         }
                         else
@@ -996,6 +1021,12 @@ namespace SeaBattle
                     }
                     //label1.Text = "Crossed ship " + ship_cross;
 
+                    left_ships = 0;
+                    for (int i = 0; i < ships_left.Length; i++)
+                    {
+                        left_ships += ships_left[i];
+                    }
+
                     if (left_ships != 0)
                     {
                         add_ship(Convert.ToInt16(enemy_rows[0]), Convert.ToInt16(enemy_columns[0]), 2, Color.Blue, true, "" + ships_left[0]);
@@ -1008,10 +1039,19 @@ namespace SeaBattle
                         add_ship(Convert.ToInt16(enemy_rows[9]), Convert.ToInt16(enemy_columns[0]), 4, Color.Blue, false, "" + ships_left[2]);
                         add_ship(Convert.ToInt16(enemy_rows[9]), Convert.ToInt16(enemy_columns[5]), 5, Color.Blue, false, "" + ships_left[3]);
                     }
-                    else
+                    if(left_ships == 0)
                     {
+                        //pctrBxOut_MouseClick(pctrBxOut, e);
+                        /*
+                        if(clicked_on_form == false)
+                        {
+                            clicked_on_form = true;
+                            pctrBxOut_MouseClick(pctrBxOut, e);
+                        }*/
+
                         label1.Text = "No ships left";
                         btnStart.Text = "Ready!";
+                        listBox1.Items.Add("Clear");
                         btnStart.Size = new Size(200, 100);
                         btnStart.Location = new Point(this.Width - (Math.Abs(this.Width - pctrBxOut.Width)) - 210, this.Height - (Math.Abs(this.Height - pctrBxOut.Height)) - 55);
                         btnStart.Show();
@@ -1086,6 +1126,7 @@ namespace SeaBattle
                                     enemy_cells[sel_hit_row, sel_hit_column] = 4;
                                     shots[sel_hit_row, sel_hit_column] = 1;
 
+                                    Senter.player_turns++;
                                     players_turn = false;
                                     //pctrBxOut_MouseClick(pctrBxOut, new Point(pctrBxOut.Width - 1, pctrBxOut.Height - 1));
                                     pctrBxOut_MouseClick(pctrBxOut, e);
@@ -1203,7 +1244,10 @@ namespace SeaBattle
                                 {
                                     is_all_ships_dead = true;
                                     is_player_won = true;
-                                    MessageBox.Show("Congratulations! You won!");
+
+                                    Senter.who_won = "Player";
+                                    pctrBxOut_MouseClick(pctrBxOut, e);
+                                    //MessageBox.Show("Congratulations! You won!");
                                 }
 
                                 //listBox1.Items.Add("Enemy_left_ships = " + enemy_left_ships);
@@ -1277,6 +1321,8 @@ namespace SeaBattle
                                         cells[shooted_row, shooted_col] = 4;
                                         enemy_shots[shooted_row, shooted_col] = 1;
                                         //exit_loop = true;
+
+                                        Senter.enemy_turns++;
                                         players_turn = true;
 
                                         listBox1.Items.Add("left_ships = " + left_ships);
@@ -1405,6 +1451,8 @@ namespace SeaBattle
                                         }
                                         is_all_ships_dead = true;
                                         is_enemy_won = true;
+                                        Senter.who_won = "Enemy";
+                                        pctrBxOut_MouseClick(pctrBxOut, e);                                       
                                         MessageBox.Show("Enemy won! How could you lose to easy bot?");
                                     }
                                 }
@@ -1561,6 +1609,7 @@ namespace SeaBattle
                                                 //System.Threading.Thread.Sleep(100);
                                                 label1.Text = "It's your turn";
                                                 //exit_loop = true;
+                                                Senter.enemy_turns++;
                                                 players_turn = true;
 
                                                 listBox1.Items.Add("left_ships = " + left_ships);
@@ -1643,6 +1692,7 @@ namespace SeaBattle
 
                                                        // System.Threading.Thread.Sleep(100);
                                                         label1.Text = "It's your turn";
+                                                        Senter.enemy_turns++;
                                                         players_turn = true;
                                                         break;
                                                     }
@@ -1665,6 +1715,7 @@ namespace SeaBattle
 
                                                                 //System.Threading.Thread.Sleep(100);
                                                                 label1.Text = "It's your turn";
+                                                                Senter.enemy_turns++;
                                                                 players_turn = true;
                                                                 break;
                                                             }
@@ -1687,6 +1738,7 @@ namespace SeaBattle
                                                         enemy_shots[hitted_row + 1, hitted_col] = 1;
                                                         //System.Threading.Thread.Sleep(100);
                                                         label1.Text = "It's your turn";
+                                                        Senter.enemy_turns++;
                                                         players_turn = true;
                                                         break;
                                                     }
@@ -1708,6 +1760,7 @@ namespace SeaBattle
                                                                 shots[row_ship[hitted_ship] + 1 + deck_ship[hitted_ship], hitted_col] = 1;
                                                                 //System.Threading.Thread.Sleep(100);
                                                                 label1.Text = "It's your turn";
+                                                                Senter.enemy_turns++;
                                                                 players_turn = true;
                                                                 break;
                                                             }
@@ -1730,6 +1783,7 @@ namespace SeaBattle
                                                         enemy_shots[hitted_row, hitted_col - 1] = 1;
                                                        // System.Threading.Thread.Sleep(100);
                                                         label1.Text = "It's your turn";
+                                                        Senter.enemy_turns++;
                                                         players_turn = true;
                                                         break;
                                                     }
@@ -1751,6 +1805,7 @@ namespace SeaBattle
                                                                 shots[row_ship[hitted_ship], hitted_col - 1] = 1;
                                                                 //System.Threading.Thread.Sleep(100);
                                                                 label1.Text = "It's your turn";
+                                                                Senter.enemy_turns++;
                                                                 players_turn = true;
                                                                 break;
                                                             }
@@ -1773,6 +1828,7 @@ namespace SeaBattle
                                                         enemy_shots[hitted_row, hitted_col + 1] = 1;
                                                         //System.Threading.Thread.Sleep(100);
                                                         label1.Text = "It's your turn";
+                                                        Senter.enemy_turns++;
                                                         players_turn = true;
                                                         break;
                                                     }
@@ -1794,6 +1850,7 @@ namespace SeaBattle
                                                                 shots[row_ship[hitted_ship], hitted_col + 1 + deck_ship[hitted_ship]] = 1;
                                                                 //System.Threading.Thread.Sleep(100);
                                                                 label1.Text = "It's your turn";
+                                                                Senter.enemy_turns++;
                                                                 players_turn = true;
                                                                 break;
                                                             }
@@ -1851,14 +1908,17 @@ namespace SeaBattle
                                         }
                                         is_all_ships_dead = true;
                                         is_enemy_won = true;
-                                        MessageBox.Show("Enemy won!");
+                                        Senter.who_won = "Enemy";
+                                        pctrBxOut_MouseClick(pctrBxOut, e);
+                                        //MessageBox.Show("Enemy won!");
                                     }
                                 }
                             }
                         }
                         listBox1.Items.Add("Is_player_won = " + is_player_won);
                         listBox1.Items.Add("Is enemy_won = " + is_enemy_won);
-                        //is_player_won = true;
+                        Senter.who_won = "Player";
+                        is_player_won = true;
                     }
                     else
                     {
