@@ -38,9 +38,8 @@
             this.who_won_lbl.ForeColor = System.Drawing.Color.Red;
             this.who_won_lbl.Location = new System.Drawing.Point(311, 24);
             this.who_won_lbl.Name = "who_won_lbl";
-            this.who_won_lbl.Size = new System.Drawing.Size(265, 85);
+            this.who_won_lbl.Size = new System.Drawing.Size(0, 85);
             this.who_won_lbl.TabIndex = 0;
-            this.who_won_lbl.Text = "dadad";
             this.who_won_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // won_or_lost_form

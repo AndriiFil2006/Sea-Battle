@@ -495,6 +495,7 @@ namespace SeaBattle
         {
             listBox1.Items.Clear();
             listBox1.Items.Add("Difficulty " + difficulty);
+            label1.BackColor = Color.White;
             if (is_button_clicked == true)
             {
                 btnStart.Hide();
@@ -550,6 +551,7 @@ namespace SeaBattle
                         if (ships_left[3] != 0)
                         {
                             is_horisontal = true;
+                            add_ship(Convert.ToInt32(enemy_rows[0]), Convert.ToInt32(enemy_columns[6]), 5, Color.Yellow, true, "");
                             sel_ship = 3;
                         }
                         else
@@ -566,6 +568,7 @@ namespace SeaBattle
                         if (ships_left[0] != 0)
                         {
                             is_horisontal = true;
+                            add_ship(Convert.ToInt32(enemy_rows[0]), Convert.ToInt32(enemy_columns[0]), 2, Color.Yellow, true, "");
                             sel_ship = 0;
                         }
                         else
@@ -583,6 +586,7 @@ namespace SeaBattle
                         if (ships_left[1] != 0)
                         {
                             is_horisontal = true;
+                            add_ship(Convert.ToInt32(enemy_rows[0]), Convert.ToInt32(enemy_columns[2]), 3, Color.Yellow, true, "");
                             sel_ship = 1;
                         }
                         else
@@ -598,6 +602,7 @@ namespace SeaBattle
                         if (ships_left[2] != 0)
                         {
                             sel_ship = 2;
+                            add_ship(Convert.ToInt32(enemy_rows[0]), Convert.ToInt32(enemy_columns[4]), 4, Color.Yellow, true, "");
                             is_horisontal = true;
                         }
                         else
@@ -613,6 +618,7 @@ namespace SeaBattle
                         if (ships_left[0] != 0)
                         {
                             is_horisontal = false;
+                            add_ship(Convert.ToInt32(enemy_rows[7]), Convert.ToInt32(enemy_columns[0]), 2, Color.Yellow, false, "");
                             sel_ship = 0;
                         }
                         else
@@ -628,6 +634,7 @@ namespace SeaBattle
                         if (ships_left[1] != 0)
                         {
                             is_horisontal = false;
+                            add_ship(Convert.ToInt32(enemy_rows[7]), Convert.ToInt32(enemy_columns[3]), 3, Color.Yellow, false, "");
                             sel_ship = 1;
                         }
                         else
@@ -643,6 +650,7 @@ namespace SeaBattle
                         if (ships_left[2] != 0)
                         {
                             is_horisontal = false;
+                            add_ship(Convert.ToInt32(enemy_rows[9]), Convert.ToInt32(enemy_columns[0]), 4, Color.Yellow, false, "");
                             sel_ship = 2;
                         }
                         else
@@ -658,6 +666,7 @@ namespace SeaBattle
                         if (ships_left[3] != 0)
                         {
                             is_horisontal = false;
+                            add_ship(Convert.ToInt32(enemy_rows[9]), Convert.ToInt32(enemy_columns[5]), 5, Color.Yellow, false, "");
                             sel_ship = 3;
                         }
                         else
@@ -1039,6 +1048,45 @@ namespace SeaBattle
                         add_ship(Convert.ToInt16(enemy_rows[9]), Convert.ToInt16(enemy_columns[0]), 4, Color.Blue, false, "" + ships_left[2]);
                         add_ship(Convert.ToInt16(enemy_rows[9]), Convert.ToInt16(enemy_columns[5]), 5, Color.Blue, false, "" + ships_left[3]);
                     }
+
+                    //making glow for ships
+
+                    if(sel_ship != -1 && left_ships != 0)
+                    {
+                        if (sel_ship == 3 && is_horisontal == true)
+                        {
+                            add_ship(Convert.ToInt32(enemy_rows[0]), Convert.ToInt32(enemy_columns[6]), 5, Color.Yellow, true, "");
+                        }
+                        else if (sel_ship == 0 && is_horisontal == true)
+                        {
+                            add_ship(Convert.ToInt32(enemy_rows[0]), Convert.ToInt32(enemy_columns[0]), 2, Color.Yellow, true, "");
+                        }
+                        else if (sel_ship == 1 && is_horisontal == true)
+                        {
+                            add_ship(Convert.ToInt32(enemy_rows[0]), Convert.ToInt32(enemy_columns[2]), 3, Color.Yellow, true, "");
+                        }
+                        else if (sel_ship == 2 && is_horisontal == true)
+                        {                          
+                            add_ship(Convert.ToInt32(enemy_rows[0]), Convert.ToInt32(enemy_columns[4]), 4, Color.Yellow, true, "");        
+                        }
+                        else if (sel_ship == 0 && is_horisontal == false)
+                        {                            
+                            add_ship(Convert.ToInt32(enemy_rows[7]), Convert.ToInt32(enemy_columns[0]), 2, Color.Yellow, false, "");
+                        }
+                        else if (sel_ship == 1 && is_horisontal == false)
+                        {
+                            add_ship(Convert.ToInt32(enemy_rows[7]), Convert.ToInt32(enemy_columns[3]), 3, Color.Yellow, false, "");                            
+                        }
+                        else if (sel_ship == 2 && is_horisontal == false)
+                        {                            
+                            add_ship(Convert.ToInt32(enemy_rows[9]), Convert.ToInt32(enemy_columns[0]), 4, Color.Yellow, false, "");                           
+                        }
+                        else if (sel_ship == 3 && is_horisontal == false)
+                        {                           
+                            add_ship(Convert.ToInt32(enemy_rows[9]), Convert.ToInt32(enemy_columns[5]), 5, Color.Yellow, false, "");   
+                        }
+                    }
+
                     if(left_ships == 0)
                     {
                         //pctrBxOut_MouseClick(pctrBxOut, e);
@@ -1050,7 +1098,9 @@ namespace SeaBattle
                         }*/
 
                         label1.Text = "No ships left";
-                        btnStart.Text = "Ready!";
+                        label1.BackColor = Color.White;
+                        label1.Location = new Point(pctrBxOut.Width / 2 - 32, pctrBxOut.Height - 16);
+                        btnStart.Text = "Start the game!";
                         listBox1.Items.Add("Clear");
                         btnStart.Size = new Size(200, 100);
                         btnStart.Location = new Point(this.Width - (Math.Abs(this.Width - pctrBxOut.Width)) - 210, this.Height - (Math.Abs(this.Height - pctrBxOut.Height)) - 55);
@@ -1917,8 +1967,8 @@ namespace SeaBattle
                         }
                         listBox1.Items.Add("Is_player_won = " + is_player_won);
                         listBox1.Items.Add("Is enemy_won = " + is_enemy_won);
-                        Senter.who_won = "Player";
-                        is_player_won = true;
+                        //Senter.who_won = "Player";
+                        //is_player_won = true;
                     }
                     else
                     {

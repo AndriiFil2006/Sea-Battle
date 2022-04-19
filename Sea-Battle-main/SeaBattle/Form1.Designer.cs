@@ -44,7 +44,7 @@
             // 
             this.lbl_exit.AutoSize = true;
             this.lbl_exit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_exit.Location = new System.Drawing.Point(1162, 9);
+            this.lbl_exit.Location = new System.Drawing.Point(1172, 9);
             this.lbl_exit.Name = "lbl_exit";
             this.lbl_exit.Size = new System.Drawing.Size(26, 25);
             this.lbl_exit.TabIndex = 1;
@@ -66,9 +66,9 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(536, 572);
+            this.btnStart.Location = new System.Drawing.Point(500, 536);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(210, 95);
+            this.btnStart.Size = new System.Drawing.Size(251, 140);
             this.btnStart.TabIndex = 4;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -96,10 +96,11 @@
             // lbl_diff
             // 
             this.lbl_diff.AutoSize = true;
+            this.lbl_diff.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.lbl_diff.ForeColor = System.Drawing.Color.White;
-            this.lbl_diff.Location = new System.Drawing.Point(545, 237);
+            this.lbl_diff.Location = new System.Drawing.Point(483, 150);
             this.lbl_diff.Name = "lbl_diff";
-            this.lbl_diff.Size = new System.Drawing.Size(155, 25);
+            this.lbl_diff.Size = new System.Drawing.Size(319, 46);
             this.lbl_diff.TabIndex = 7;
             this.lbl_diff.Text = "Pick the difficulty";
             this.lbl_diff.Click += new System.EventHandler(this.label2_Click_1);
@@ -107,7 +108,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(550, 276);
+            this.comboBox1.Location = new System.Drawing.Point(552, 205);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(150, 33);
             this.comboBox1.TabIndex = 8;
@@ -126,7 +127,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(3)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(1210, 688);
+            this.ClientSize = new System.Drawing.Size(1204, 688);
             this.Controls.Add(this.show_panel);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lbl_diff);
