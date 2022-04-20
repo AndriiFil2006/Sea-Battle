@@ -36,10 +36,11 @@
             this.who_won_lbl.AutoSize = true;
             this.who_won_lbl.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.who_won_lbl.ForeColor = System.Drawing.Color.Red;
-            this.who_won_lbl.Location = new System.Drawing.Point(311, 24);
+            this.who_won_lbl.Location = new System.Drawing.Point(31, 9);
             this.who_won_lbl.Name = "who_won_lbl";
-            this.who_won_lbl.Size = new System.Drawing.Size(0, 85);
+            this.who_won_lbl.Size = new System.Drawing.Size(669, 85);
             this.who_won_lbl.TabIndex = 0;
+            this.who_won_lbl.Text = "sasasasasasasasa";
             this.who_won_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // won_or_lost_form

@@ -58,7 +58,7 @@
             this.pctrBxOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(3)))), ((int)(((byte)(59)))));
             this.pctrBxOut.Location = new System.Drawing.Point(-2, 37);
             this.pctrBxOut.Name = "pctrBxOut";
-            this.pctrBxOut.Size = new System.Drawing.Size(1204, 653);
+            this.pctrBxOut.Size = new System.Drawing.Size(1205, 653);
             this.pctrBxOut.TabIndex = 3;
             this.pctrBxOut.TabStop = false;
             this.pctrBxOut.Click += new System.EventHandler(this.pctrBxOut_Click);
@@ -66,9 +66,10 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(500, 536);
+            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnStart.Location = new System.Drawing.Point(454, 465);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(251, 140);
+            this.btnStart.Size = new System.Drawing.Size(292, 140);
             this.btnStart.TabIndex = 4;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -95,22 +96,25 @@
             // 
             // lbl_diff
             // 
-            this.lbl_diff.AutoSize = true;
-            this.lbl_diff.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.lbl_diff.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_diff.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_diff.ForeColor = System.Drawing.Color.White;
-            this.lbl_diff.Location = new System.Drawing.Point(483, 150);
+            this.lbl_diff.Location = new System.Drawing.Point(3, 96);
             this.lbl_diff.Name = "lbl_diff";
-            this.lbl_diff.Size = new System.Drawing.Size(319, 46);
+            this.lbl_diff.Size = new System.Drawing.Size(1205, 46);
             this.lbl_diff.TabIndex = 7;
             this.lbl_diff.Text = "Pick the difficulty";
+            this.lbl_diff.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbl_diff.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // comboBox1
             // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(552, 205);
+            this.comboBox1.Location = new System.Drawing.Point(454, 183);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(150, 33);
+            this.comboBox1.Size = new System.Drawing.Size(292, 54);
             this.comboBox1.TabIndex = 8;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 

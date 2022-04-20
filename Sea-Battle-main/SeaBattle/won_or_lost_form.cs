@@ -20,6 +20,7 @@ namespace SeaBattle
         private void won_or_lost_form_Load(object sender, EventArgs e)
         {
             who_won_lbl.Location = new Point(this.Width / 2 - 36, 36);
+            
             int score = 0;
             if (Senter.who_won == "Player")
             {
@@ -31,7 +32,7 @@ namespace SeaBattle
             {
                 score = 1000 - Senter.enemy_turns * 10;
 
-                who_won_lbl.Text = "Enemy won! \n\n It took " + Senter.enemy_turns + " turns \n\n" + " Your score: " + score + " \n Congratulations";
+                who_won_lbl.Text = "Enemy won! \n\n It took " + Senter.enemy_turns + " turns \n\n" + " Your score: " + score + " \n Better luck next time!";
             }
             else
             {
