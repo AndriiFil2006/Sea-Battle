@@ -1108,7 +1108,7 @@ namespace SeaBattle
                         btnStart.Text = "Start the game!";
                         listBox1.Items.Add("Clear");
                         btnStart.Size = new Size(200, 100);
-                        btnStart.Location = new Point(this.Width - (Math.Abs(this.Width - pctrBxOut.Width)) - 210, this.Height - (Math.Abs(this.Height - pctrBxOut.Height)) - 55);
+                        btnStart.Location = new Point(this.Width - (Math.Abs(this.Width - pctrBxOut.Width)) - 210, this.Height - (Math.Abs(this.Height - pctrBxOut.Height)) - 75);
                         btnStart.Show();
                     }
                 }
@@ -1301,7 +1301,9 @@ namespace SeaBattle
                                     is_player_won = true;
 
                                     Senter.who_won = "Player";
+                                    label1.Text = "";
                                     pctrBxOut_MouseClick(pctrBxOut, e);
+                                    label1.Text = "";
                                     //MessageBox.Show("Congratulations! You won!");
                                 }
 
@@ -1507,6 +1509,7 @@ namespace SeaBattle
                                         is_all_ships_dead = true;
                                         is_enemy_won = true;
                                         Senter.who_won = "Enemy";
+                                        label1.Text = "";
                                         pctrBxOut_MouseClick(pctrBxOut, e);                                       
                                        // MessageBox.Show("Enemy won! How could you lose to easy bot?");
                                     }
@@ -1964,6 +1967,7 @@ namespace SeaBattle
                                     }
                                     is_enemy_won = true;
                                     Senter.who_won = "Enemy";
+                                    label1.Text = "";
                                     pctrBxOut_MouseClick(pctrBxOut, e);
                                     //MessageBox.Show("Enemy won!");
                                 }
@@ -1972,6 +1976,7 @@ namespace SeaBattle
                         listBox1.Items.Add("Is_player_won = " + is_player_won);
                         listBox1.Items.Add("Is enemy_won = " + is_enemy_won);
                        // Senter.who_won = "Player";
+                        //label1.Text = "";
                         //is_player_won = true;
                     }
                     else
