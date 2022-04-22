@@ -59,5 +59,15 @@ namespace SeaBattle.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap photo_2022_04_21_20_26_58 {
+            get {
+                object obj = ResourceManager.GetObject("photo_2022-04-21_20-26-58", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

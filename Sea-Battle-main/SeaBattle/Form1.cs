@@ -26,6 +26,7 @@ namespace SeaBattle
         string difficulty = "Normal";
         bool is_enemy_won = false;
         bool is_player_won = false;
+        bool is_x_white = false;
         
 
         //array ships will have 4 values: 0 - not in the table, 1 - on the table and haven't hited, 2 - on the table, hitted, 3 - dead
@@ -418,7 +419,14 @@ namespace SeaBattle
 
         private void lbl_exit_MouseLeave(object sender, EventArgs e)
         {
-            lbl_exit.ForeColor = Color.White;
+            if (is_x_white == false)
+            {
+                lbl_exit.ForeColor = Color.Black;
+            }
+            else if(is_x_white == true)
+            {
+                lbl_exit.ForeColor = Color.White;
+            }
         }
 
         private void lbl_exit_MouseEnter(object sender, EventArgs e)
@@ -1108,7 +1116,7 @@ namespace SeaBattle
                         btnStart.Text = "Start the game!";
                         listBox1.Items.Add("Clear");
                         btnStart.Size = new Size(200, 100);
-                        btnStart.Location = new Point(this.Width - (Math.Abs(this.Width - pctrBxOut.Width)) - 210, this.Height - (Math.Abs(this.Height - pctrBxOut.Height)) - 75);
+                        btnStart.Location = new Point(this.Width - (Math.Abs(this.Width - pctrBxOut.Width)) - 210, this.Height - (Math.Abs(this.Height - pctrBxOut.Height)) - 100);
                         btnStart.Show();
                     }
                 }
@@ -1140,7 +1148,7 @@ namespace SeaBattle
                         if (players_turn == true)
                         {
                             label1.Text = "It's your turn";
-                            label1.ForeColor = Color.Red;
+                            label1.ForeColor = Color.White;
                             label1.Location = new Point(pctrBxOut.Width / 2 - 14 * 6, 9);
                             int sel_hit_row = -1;
                             int sel_hit_column = -1;
@@ -1975,9 +1983,9 @@ namespace SeaBattle
                         }
                         listBox1.Items.Add("Is_player_won = " + is_player_won);
                         listBox1.Items.Add("Is enemy_won = " + is_enemy_won);
-                       // Senter.who_won = "Player";
+                        //Senter.who_won = "Enemy";
                         //label1.Text = "";
-                        //is_player_won = true;
+                        //is_enemy_won = true;
                     }
                     else
                     {
@@ -2031,6 +2039,9 @@ namespace SeaBattle
         {
             if (is_button_clicked == false)
             {
+                lbl_exit.ForeColor = Color.White;
+                is_x_white = true;
+                this.BackgroundImage = null;
                 btnStart.Hide();
                 comboBox1.Hide();
                 lbl_diff.Hide();

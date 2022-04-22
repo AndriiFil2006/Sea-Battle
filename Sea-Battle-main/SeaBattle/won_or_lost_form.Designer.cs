@@ -35,12 +35,11 @@
             // 
             this.who_won_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.who_won_lbl.AutoSize = true;
             this.who_won_lbl.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.who_won_lbl.ForeColor = System.Drawing.Color.Red;
-            this.who_won_lbl.Location = new System.Drawing.Point(20, 9);
+            this.who_won_lbl.Location = new System.Drawing.Point(-1, 9);
             this.who_won_lbl.Name = "who_won_lbl";
-            this.who_won_lbl.Size = new System.Drawing.Size(0, 85);
+            this.who_won_lbl.Size = new System.Drawing.Size(714, 482);
             this.who_won_lbl.TabIndex = 0;
             this.who_won_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -58,7 +57,6 @@
             this.Text = "won_or_lost_form";
             this.Load += new System.EventHandler(this.won_or_lost_form_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

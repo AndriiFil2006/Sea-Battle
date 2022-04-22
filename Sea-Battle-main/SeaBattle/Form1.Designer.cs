@@ -43,7 +43,8 @@
             // lbl_exit
             // 
             this.lbl_exit.AutoSize = true;
-            this.lbl_exit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_exit.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_exit.ForeColor = System.Drawing.Color.Black;
             this.lbl_exit.Location = new System.Drawing.Point(1172, 9);
             this.lbl_exit.Name = "lbl_exit";
             this.lbl_exit.Size = new System.Drawing.Size(26, 25);
@@ -56,9 +57,10 @@
             // pctrBxOut
             // 
             this.pctrBxOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(3)))), ((int)(((byte)(59)))));
-            this.pctrBxOut.Location = new System.Drawing.Point(-2, 37);
+            this.pctrBxOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pctrBxOut.Location = new System.Drawing.Point(0, 37);
             this.pctrBxOut.Name = "pctrBxOut";
-            this.pctrBxOut.Size = new System.Drawing.Size(1205, 653);
+            this.pctrBxOut.Size = new System.Drawing.Size(1204, 669);
             this.pctrBxOut.TabIndex = 3;
             this.pctrBxOut.TabStop = false;
             this.pctrBxOut.Click += new System.EventHandler(this.pctrBxOut_Click);
@@ -67,7 +69,7 @@
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnStart.Location = new System.Drawing.Point(454, 465);
+            this.btnStart.Location = new System.Drawing.Point(848, 481);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(292, 140);
             this.btnStart.TabIndex = 4;
@@ -98,11 +100,13 @@
             // 
             this.lbl_diff.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_diff.AutoSize = true;
+            this.lbl_diff.BackColor = System.Drawing.Color.Transparent;
             this.lbl_diff.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_diff.ForeColor = System.Drawing.Color.White;
-            this.lbl_diff.Location = new System.Drawing.Point(3, 96);
+            this.lbl_diff.ForeColor = System.Drawing.Color.Black;
+            this.lbl_diff.Location = new System.Drawing.Point(828, 299);
             this.lbl_diff.Name = "lbl_diff";
-            this.lbl_diff.Size = new System.Drawing.Size(1205, 46);
+            this.lbl_diff.Size = new System.Drawing.Size(389, 54);
             this.lbl_diff.TabIndex = 7;
             this.lbl_diff.Text = "Pick the difficulty";
             this.lbl_diff.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -112,7 +116,7 @@
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(454, 183);
+            this.comboBox1.Location = new System.Drawing.Point(848, 366);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(292, 54);
             this.comboBox1.TabIndex = 8;
@@ -131,6 +135,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(3)))), ((int)(((byte)(59)))));
+            this.BackgroundImage = global::SeaBattle.Properties.Resources.photo_2022_04_21_20_26_58;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1204, 688);
             this.Controls.Add(this.show_panel);
             this.Controls.Add(this.comboBox1);
